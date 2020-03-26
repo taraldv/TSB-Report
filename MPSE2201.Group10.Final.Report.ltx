@@ -15,6 +15,7 @@
 \usepackage{color}
 \usepackage[colorlinks]{hyperref}
 \usepackage{cleveref}
+\usepackage{float}
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
@@ -27,6 +28,25 @@
 
 \setlength{\parindent}{0em}
 \setlength{\parskip}{1em}
+
+\lstset{frame=tb,
+extendedchars = true,
+texcl=true,
+  language=C++,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
 
 
 \title{Final project report\large\\
@@ -49,6 +69,21 @@ MPSE2201 System design and engineering}
 \newpage
 
 Test av cite \cite{ssb-consumption}
+
+jkljkløjklø
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=200pt]{img/ConceptMatrixChosen.png}
+ \caption{Use Case Diagram Example}
+ \end{figure}
+
+
+\begin {lstlisting}
+while(true)
+{
+	int i = 5 +5;
+}
+\end{lstlisting}
 
 \tableofcontents
 
