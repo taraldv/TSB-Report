@@ -2,7 +2,7 @@
 \setcounter{secnumdepth}{0}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage[english, norsk]{babel}
+\usepackage[english]{babel}
 \usepackage{tcolorbox}
 \usepackage{url}
 \usepackage{etoolbox}
@@ -13,9 +13,16 @@
 \usepackage{geometry}
 \usepackage{listings}
 \usepackage{color}
+\usepackage[colorlinks]{hyperref}
+\usepackage{cleveref}
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{Black}{rgb}{0.0, 0.0, 0.0}
+
+\hypersetup{citecolor=Black}
+\hypersetup{linkcolor=Black}
+\hypersetup{urlcolor=Black}
 
 
 \setlength{\parindent}{0em}
@@ -41,10 +48,14 @@ MPSE2201 System design and engineering}
 
 \newpage
 
-
+Test av cite \cite{ssb-consumption}
 
 \tableofcontents
 
 \newpage
-
+%Referanse
+\nocite{*}
+\bibliographystyle{plain}
+\bibliography{ref}
+\addcontentsline{toc}{section}{References}
 \end{document}
