@@ -29,6 +29,27 @@
 \setlength{\parindent}{0em}
 \setlength{\parskip}{1em}
 
+
+
+
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+            {-2.5ex\@plus -1ex \@minus -.25ex}%
+            {1.25ex \@plus .25ex}%
+            {\normalfont\normalsize\bfseries}}
+\makeatother
+\setcounter{tocdepth}{4}  
+
+
+
+
+
+
+
+
+
+
+
 \lstset{frame=tb,
 extendedchars = true,
 texcl=true,
@@ -68,9 +89,126 @@ MPSE2201 System design and engineering}
 
 \newpage
 
+\tableofcontents
+
+
+\newpage
+%INTRODUCTION
+\section {Introduction}
+\subsection{Assignment}
+\subsection{Report}
+%PLANNING
+\section{Planning (Finn på bedre tittel)}
+\subsection{Complications due to COVID-19}
+\subsection{Tools}
+\subsection{Internal Discussions}
+\subsection{Understanding the problem}
+\subsection{Stakeholders}
+\subsection{Context}
+%REQUIREMENTS
+\section{Requirements}
+\subsection{User Requirements}
+\subsection{Effectiveness Measures}
+\subsection{System Requirements}
+\subsubsection{Functional}
+\subsubsection{Temporal Performance}
+\subsubsection{Non-Temporal Performance Requirements}
+\subsubsection{Interface Requirements}
+\subsubsection{Design Requirements}
+%CORE TECHNICAL PROCESS
+\section{Design}
+%Tier 0
+\subsection{Tier 0: The System and Its Context}
+\subsubsection{Behavior}
+\subsubsection{Structure}
+\paragraph{Harvesting Energy}
+
+\textbf{Solar}
+
+\textbf{Hydro}
+
+\textbf{Wind}
+
+\textbf{Wind}
+
+\textbf{Nuclear}
+
+\paragraph{Storing Energy}
+\textbf{Batteries}
+\textbf{Vehicle-to-Building (V2B)}
+\textbf{Hydrogen}
+\textbf{Water Magazine}
+\paragraph{Generating Heat}
+\textbf{Burning Trash}
+
+\textbf{Geothermal}
+
+\textbf{Burning Pellets}
+
+\textbf{District Heating}
+
+\subsubsection{Trade-Off}
+\paragraph{Harvesting Energy}
+\paragraph{Storing Energy}
+\paragraph{Generating Heat}
+\paragraph{Recommendations}
+\subsubsection{Derived Requirements}
+
+%Tier 1
+\subsection{Tier 1: The System}
+\subsubsection{Behavior}
+
+\paragraph{Control System}
+
+\paragraph{Photovoltaic System}
+
+\paragraph{Energy Storage system}
+
+\paragraph{Geothermal Heating/Cooling}
+
+\subsubsection{Structure}
+
+\subsubsection{Trade-Off}
+
+\paragraph{Control System}
+
+\paragraph{Recommendations}
+
+\subsubsection{Derived Requirements}
+
+
+%Tier 2
+\subsection{Tier 2: Subsystems}
+\subsubsection{Energy Storage System}
+\paragraph{Behavior}
+\paragraph{Structure}
+\subsubsection{Control System}
+\paragraph{Behavior}
+\textbf{Control Unit}
+\textbf{MCU Main Communication Unit}
+\textbf{Databases}
+\textit{MySQL}
+\textit{MongoDB}
+
+\textbf{Data-Gathering Software}
+\textit{Historical Data}
+\textit{Continuous Data}
+\paragraph{Structure}
+
+
+
+\newpage
+%Referanse
+\nocite{*}
+\bibliographystyle{plain}
+\bibliography{ref}
+\addcontentsline{toc}{section}{References}
+
+
+
+%Examples
 Test av cite \cite{ssb-consumption}
 
-jkljkløjklø
 \begin{figure}[H]
  \centering
   \includegraphics[width=200pt]{img/ConceptMatrixChosen.png}
@@ -85,12 +223,5 @@ while(true)
 }
 \end{lstlisting}
 
-\tableofcontents
 
-\newpage
-%Referanse
-\nocite{*}
-\bibliographystyle{plain}
-\bibliography{ref}
-\addcontentsline{toc}{section}{References}
 \end{document}
