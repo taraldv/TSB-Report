@@ -16,6 +16,28 @@
 \usepackage[colorlinks]{hyperref}
 \usepackage{cleveref}
 \usepackage{float}
+\usepackage{array}
+\usepackage{acro}
+
+\acsetup{first-style=short}
+\DeclareAcronym{ny}{
+  short = NY ,
+  long  = New York ,
+  class = abbrev
+}
+\DeclareAcronym{la}{
+  short = LA ,
+  long  = Los Angeles ,
+  class = abbrev
+}
+\DeclareAcronym{un}{
+  short = UN ,
+  long  = United Nations ,
+  class = abbrev
+}
+
+
+
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
@@ -25,12 +47,8 @@
 \hypersetup{linkcolor=Black}
 \hypersetup{urlcolor=Black}
 
-
 \setlength{\parindent}{0em}
 \setlength{\parskip}{1em}
-
-
-
 
 \makeatletter
 \renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
@@ -39,16 +57,6 @@
             {\normalfont\normalsize\bfseries}}
 \makeatother
 \setcounter{tocdepth}{4}  
-
-
-
-
-
-
-
-
-
-
 
 \lstset{frame=tb,
 extendedchars = true,
@@ -78,6 +86,8 @@ MPSE2201 System design and engineering}
 
 
 \begin{document}
+\ac{ny}, \ac{la} and \ac{un} are abbreviations whereas
+
 \selectlanguage{english}
 \maketitle
 \thispagestyle{empty}
@@ -91,8 +101,14 @@ MPSE2201 System design and engineering}
 
 \tableofcontents
 
+\newpage
+
+\listoffigures
 
 \newpage
+\printacronyms[include-classes=abbrev,name=Abbreviations]
+\newpage
+
 %INTRODUCTION
 \section {Introduction}
 \subsection{Assignment}
@@ -116,7 +132,7 @@ MPSE2201 System design and engineering}
 \subsubsection{Interface Requirements}
 \subsubsection{Design Requirements}
 %CORE TECHNICAL PROCESS
-\section{Design}
+\section{Core Technical Process}
 %Tier 0
 \subsection{Tier 0: The System and Its Context}
 \subsubsection{Behavior}
@@ -185,15 +201,54 @@ MPSE2201 System design and engineering}
 \subsubsection{Control System}
 \paragraph{Behavior}
 \textbf{Control Unit}
+
 \textbf{MCU Main Communication Unit}
+
 \textbf{Databases}
+
 \textit{MySQL}
+
 \textit{MongoDB}
 
+
 \textbf{Data-Gathering Software}
+
 \textit{Historical Data}
+
 \textit{Continuous Data}
+
+\textbf{Machine Learning Software}
+
+\textbf{Application / Website}
+
+\textbf{Developer Tools}
+
 \paragraph{Structure}
+
+\paragraph{Derived Requirements}
+
+
+\section{Build and Test Plan}
+
+\section{Performance}
+\subsection{Production}
+\subsection{Consumption}
+\subsection{Capacity for Storage}
+\subsection{Prototypes / Proof-of-Concept}
+\subsubsection{Machine Learning}
+\paragraph{Predicting Solar Panel Power Production}
+\paragraph{Predicting Power Prices}
+\subsubsection{Web-Application}
+
+\section{Risk}
+\section{Economics}
+\subsection{Our Budget}
+\subsection{Our Cash Flow Graph}
+\subsection{Residents Budget}
+
+\section{Conclusion}
+
+
 
 
 
