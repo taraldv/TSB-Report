@@ -86,6 +86,7 @@ MPSE2201 System design and engineering}
 
 
 \begin{document}
+%DISSE FORKORTELSENE MÅ HENVISES TIL I DOKUMENTET FOR Å DUKKE OPP I LISTA
 \ac{ny}, \ac{la} and \ac{un} are abbreviations whereas
 
 \selectlanguage{english}
@@ -102,10 +103,13 @@ MPSE2201 System design and engineering}
 \tableofcontents
 
 \newpage
-
+\phantomsection
+\addcontentsline{toc}{section}{\listfigurename}
 \listoffigures
 
 \newpage
+\phantomsection
+\addcontentsline{toc}{section}{Abbreviations}
 \printacronyms[include-classes=abbrev,name=Abbreviations]
 \newpage
 
