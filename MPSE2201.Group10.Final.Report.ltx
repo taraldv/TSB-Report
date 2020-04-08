@@ -18,21 +18,32 @@
 \usepackage{float}
 \usepackage{array}
 \usepackage{acro}
+\usepackage{pdfpages}
 
 \acsetup{first-style=short}
-\DeclareAcronym{ny}{
-  short = NY ,
-  long  = New York ,
+\DeclareAcronym{MCU}{
+  short = MCU ,
+  long  = Main Communication Unit ,
   class = abbrev
 }
-\DeclareAcronym{la}{
-  short = LA ,
-  long  = Los Angeles ,
+\DeclareAcronym{V2B}{
+  short = V2B ,
+  long  = Vehicle-to-Building ,
   class = abbrev
 }
-\DeclareAcronym{un}{
+\DeclareAcronym{DB}{
   short = UN ,
-  long  = United Nations ,
+  long  = Database ,
+  class = abbrev
+}
+\DeclareAcronym{SQL}{
+  short = SQL ,
+  long  = Structured Query Language ,
+  class = abbrev
+}
+\DeclareAcronym{COVID}{
+  short = COVID-19 ,
+  long  = Corona Virus Disease 2019 ,
   class = abbrev
 }
 
@@ -87,7 +98,7 @@ MPSE2201 System design and engineering}
 
 \begin{document}
 %DISSE FORKORTELSENE MÅ HENVISES TIL I DOKUMENTET FOR Å DUKKE OPP I LISTA
-\ac{ny}, \ac{la} and \ac{un} are abbreviations whereas
+
 
 \selectlanguage{english}
 \maketitle
@@ -120,7 +131,10 @@ MPSE2201 System design and engineering}
 \subsection{Our Systems Engineering Process}
 %PLANNING
 \section{Planning}
-\subsection{Complications due to COVID-19}
+\subsection{Contract of Operations}
+
+\includepdf[pages=-]{pdf/ContractTerra.pdf}
+\subsection{Complications due to \ac{COVID}}
 \subsection{Tools}
 \textbf{Jira}
 \textbf{Microsoft Teams}
@@ -174,7 +188,7 @@ MPSE2201 System design and engineering}
 
 \paragraph{Storing Energy}
 \textbf{Batteries}
-\textbf{Vehicle-to-Building (V2B)}
+\textbf{Vehicle-to-Building (\ac{V2B})}
 \textbf{Hydrogen}
 \textbf{Water Magazine}
 \paragraph{Generating Heat}
@@ -231,12 +245,12 @@ MPSE2201 System design and engineering}
 
 \textbf{Control Unit}
 
-\textbf{MCU Main Communication Unit}
+\textbf{\ac{MCU} (Main Communication Unit)}
 
 \textbf{Databases}
 
 \textit{MySQL}
-
+\ac{SQL}
 \textit{MongoDB}
 
 
@@ -291,24 +305,209 @@ MPSE2201 System design and engineering}
 \bibliography{ref}
 \addcontentsline{toc}{section}{References}
 
+\newpage
+%APPENDICES
+\section{Appendices}
 
-
-%Examples
-Test av cite \cite{ssb-consumption}
-
+\subsection{Figures}
 \begin{figure}[H]
  \centering
   \includegraphics[width=200pt]{img/ConceptMatrixChosen.png}
  \caption{Use Case Diagram Example}
  \end{figure}
 
+\subsection{Code}
 
+\subsubsection{Machine Learning, Solar Power Prediction}
 \begin {lstlisting}
-while(true)
-{
-	int i = 5 +5;
-}
+import pandas as pd  
+import numpy as np  
+import matplotlib.pyplot as plt  
+from sklearn.model_selection import train_test_split 
+from sklearn.tree import DecisionTreeRegressor  
+from sklearn import metrics
+import datetime as dt
+import pymongo
+from mongoConfigFile import *
+
+power = []
+dates = []
+weather = {}
+data = {'Year': [], 'Month': [], 'Day': [], 'Hour': [], 'Temp': [], 
+'CloudAreaFraction': [], 'CloudBaseHeight': [], 'WeatherType': [], 'Power': []}
+clientUrl = ("mongodb+srv://{0}:{1}@terrasolaris-robmp.azure.mongodb.net/test?retryWrites=true&w=majority".
+		format(mongoUsername, mongoPassword))
+client = pymongo.MongoClient(clientUrl)
+db = client["Terra"]
+
+def main():
+	fillData()
+	fillWeather()
+	dataset = fillPanda()
+	betterPredictWithWeather(dataset)
+
+def fillData():
+	print("Fyller sol..")
+	collection = db["sunsouth"]
+	cursor = collection.find({})
+	for document in cursor:
+		dates.append(document["time"])
+		power.append(document["p"])
+
+def fillWeather():
+	print("Filling weather..")
+	collection = db['weather']
+	cursor = collection.find({})
+	for document in cursor:
+		arr = []
+		arr.append(document.get('air_temperature'))
+		arr.append(document.get('cloud_area_fraction'))
+		arr.append(document.get('cloud_base_height'))
+		arr.append(document.get('weather_type'))
+		weather[document['time'] + ':00'] = arr
+
+
+def fillPanda():
+	print('Fyller Panda..')
+	db = client["Terra"]
+	collection = db["weather"]
+
+	for date in dates:
+		l = weather.get(date)
+		date = pd.to_datetime(date)
+		data['Year'].append(int(date.year))
+		data['Month'].append(int(date.month))
+		data['Day'].append(int(date.day))
+		data['Hour'].append(int(date.hour))
+		default = None
+		data['Temp'].append(l[0] if l is not None and 0 < len(l) else default)
+		data['CloudAreaFraction'].append(l[1] if l is not None and 1 < len(l) else default)
+		data['CloudBaseHeight'].append(l[2] if l is not None and 2 < len(l) else default)
+		data['WeatherType'].append(l[3] if l is not None and 3 < len(l) else default)
+
+	data['Power'] = power
+	df = pd.DataFrame(data=data)
+	df.fillna(df.mean(), inplace=True)
+	df = df.reset_index()
+	return df
+
+def betterPredictWithWeather(dataset):
+	X = dataset[['Year', 'Month', 'Day', 'Hour', 'Temp', 'CloudAreaFraction', 'CloudBaseHeight', 'WeatherType']].values
+	y = dataset['Power'].values
+
+	X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.01, shuffle=False)
+	regressor = DecisionTreeRegressor(random_state = 0)
+	regressor.fit(X_train, y_train)
+	y_pred = regressor.predict(X_test)
+
+	print('Mean Absolute Error:', metrics.mean_absolute_error(y_test, y_pred))  
+	
+	X_dates = []
+	for date in X_test:
+		X_dates.append(dt.datetime(int(date[0]), int(date[1]), int(date[2]), int(date[3])))
+
+	df = pd.DataFrame({'Actual': y_test, 'Predicted': y_pred}, index = X_dates)
+	
+	df1 = df.head(100)
+	ax = df1.plot(kind='bar',figsize=(200,100))
+	plt.grid(which='major', linestyle='-', linewidth='0.5', color='green')
+	plt.grid(which='minor', linestyle=':', linewidth='0.5', color='black')
+	
+	x_labels = df1.index.strftime('%d-%b-%y %H:00')
+	ax.set_xticklabels(x_labels)
+	ax.set_xlabel('Date')
+	ax.set_ylabel('Wh')
+	plt.show()
+
+
+main()
 \end{lstlisting}
+\subsubsection{Machine Learning, Power Price Prediction}
+\begin{lstlisting}
+import pandas as pd  
+import numpy as np  
+import matplotlib.pyplot as plt  
+from sklearn.model_selection import train_test_split 
+from sklearn.tree import DecisionTreeRegressor  
+from sklearn import metrics
+import datetime as dt
+import pymongo
+from mongoConfigFile import *
+
+powerPrices = []
+dates = []
+data = {'Year': [], 'Month': [], 'Day': [], 'Hour': [], 'PowerPrice': []}
+clientUrl = ("mongodb+srv://{0}:{1}@terrasolaris-robmp.azure.mongodb.net/test?retryWrites=true&w=majority".
+		format(mongoUsername, mongoPassword))
+client = pymongo.MongoClient(clientUrl)
+db = client["Terra"]
+
+def main():
+	fillData()
+	dataset = fillPanda()
+	betterPredict(dataset)
+
+def fillData():
+	print("Fyller priser..")
+	collection = db["powerPrices"]
+	#cursor = collection.find({"time": "2005-01-01T00:00:00"})
+	cursor = collection.find({})
+	for document in cursor:
+		dates.append(document["time"])
+		powerPrices.append(document["price"])
+
+def fillPanda():
+	print('Fyller Panda..')
+
+	for date in dates:
+		date = pd.to_datetime(date)
+		data['Year'].append(int(date.year))
+		data['Month'].append(int(date.month))
+		data['Day'].append(int(date.day))
+		data['Hour'].append(int(date.hour))
+
+	data['PowerPrice'] = powerPrices
+	df = pd.DataFrame(data=data)
+	df.fillna(value=pd.np.nan, inplace=True)
+	df = df.reset_index()
+	return df
+
+
+def betterPredict(dataset):
+	X = dataset[['Year', 'Month', 'Day', 'Hour']].values
+	y = dataset['PowerPrice'].values
+
+	X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.01, shuffle=False)#, random_state=0)
+
+	regressor = DecisionTreeRegressor(random_state = 0)
+	regressor.fit(X_train, y_train)
+	y_pred = regressor.predict(X_test)
+
+	X_dates = []
+	for date in X_test:
+		X_dates.append(dt.datetime(date[0], date[1], date[2], date[3]))
+
+	df = pd.DataFrame({'Actual': y_test, 'Predicted': y_pred}, index = X_dates)
+		
+	df1 = df.head(50)
+	ax = df1.plot(kind='bar',figsize=(200,100))
+	plt.grid(which='major', linestyle='-', linewidth='0.5', color='green')
+	plt.grid(which='minor', linestyle=':', linewidth='0.5', color='black')
+	
+	x_labels = df1.index.strftime('%d-%b-%y %H:00')
+	ax.set_xticklabels(x_labels)
+	ax.set_xlabel('Date')
+	ax.set_ylabel('NOK/MWh')
+	plt.show()
+
+	print('Mean Absolute Error:', metrics.mean_absolute_error(y_test, y_pred))  
+
+main()
+\end{lstlisting}
+
+\subsubsection{Web-Application}
+
+Test av cite \cite{ssb-consumption}
 
 
 \end{document}
