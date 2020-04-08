@@ -317,8 +317,263 @@ MPSE2201 System design and engineering}
  \end{figure}
 
 \subsection{Code}
+\subsubsection{Historical Weather Web-Crawler}
+\begin{lstlisting}
+%LIM INN KODEN DIN HER TARALD
+\end{lstlisting}
+\subsubsection{MongoDB Filler}
+\begin{lstlisting}
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <bsoncxx/builder/stream/document.hpp>
+#include <bsoncxx/json.hpp>
+#include <mongocxx/client.hpp>
+#include <mongocxx/instance.hpp>
+#include "boost/property_tree/ptree.hpp"
+#include "boost/property_tree/json_parser.hpp"
+#include "boost/date_time/posix_time/posix_time.hpp"
+#include <boost/foreach.hpp>
+#include <thread>
+#include <vector>
+#include <functional>
+#include <algorithm>
+#include "power.h"
+#include <boost/algorithm/string/replace.hpp>
 
-\subsubsection{Machine Learning, Solar Power Prediction}
+using boost::property_tree::ptree;
+using boost::posix_time::ptime;
+using boost::posix_time::from_iso_string;
+
+bool fillSunWall(std::string, mongocxx::client&);
+bool fillWeather(mongocxx::client&);
+bool parseSun();
+bool fillPowerPrices(mongocxx::client&);
+
+std::string powerPath = "data/PowerData/El";
+std::string powerExt = ".csv";
+
+std::string weatherPath = "data/WeatherData/data2.json";
+std::string sunPath = "data/SolarData/";
+std::string jsonExt = ".json";
+
+
+int main(int, char**) 
+{
+    mongocxx::instance inst{};
+    mongocxx::client conn{
+        mongocxx::uri{
+            "mongodb+srv://kent:<Password>@terrasolaris-robmp.azure.
+		mongodb.net/test?retryWrites=true&w=majority"}};
+
+    fillSunWall("roof", conn);
+    fillSunWall("south", conn);
+    fillSunWall("west", conn);
+    fillSunWall("east", conn);
+    fillWeather(conn);
+    fillPowerPrices(conn);
+
+    return 0;
+}
+
+bool fillSunWall(std::string direction, mongocxx::client& conn)
+{
+    for(int i = 1; i <= 3; i++)
+    {
+        std::cout << "Document: " << direction + std::to_string(i) << "\n";
+        std::ifstream ist(sunPath + direction + std::to_string(i) + jsonExt);
+        ptree pt;
+        read_json(ist, pt);
+
+        pt = pt.get_child("outputs").get_child("hourly");
+
+        for (auto & array_element : pt) {
+
+            std::string time = array_element.second.get<std::string>("time");
+            time.replace(8, 1, "T");
+            ptime t = from_iso_string(time);
+            double p_val = array_element.second.get<double>("P");
+
+            bsoncxx::builder::stream::document document{};
+            auto builder = bsoncxx::builder::stream::document{};
+            bsoncxx::document::value doc_value = builder
+                << "time" << to_iso_extended_string(t)
+                << "p" << p_val
+                << bsoncxx::builder::stream::finalize;
+            auto collection = conn["Terra"]["sun" + direction];
+            collection.insert_one(doc_value.view());
+        }
+    }
+    return true;
+}
+
+void fillData(boost::property_tree::ptree &pt, std::string time, mongocxx::client& conn)
+{
+    bsoncxx::builder::stream::document doc{};
+    time = time.substr(0, 16);
+    doc << "time" << time;
+
+    for (auto & array_element : pt) {
+
+        std::string elementId = array_element.second.get<std::string>("elementId");
+        double value = array_element.second.get<double>("value");
+        doc << elementId << array_element.second.get<double>("value");
+    }
+
+    
+    auto collection = conn["Terra"]["weather"];
+    collection.insert_one(doc.view());
+}
+
+void fillDoc(boost::property_tree::ptree &pt, std::string time, mongocxx::client& conn)
+{
+    if(pt.empty())
+    {
+        return;
+    }
+    else
+    {
+        for (boost::property_tree::ptree::iterator pos = pt.begin(); pos != pt.end();)
+        {
+            if(pos->first == "referenceTime")
+            {
+                time = pos->second.data();
+            }
+            else if(pos->first == "observations")
+            {
+                fillData(pos->second, time, conn);
+            }
+            fillDoc(pos->second, time, conn);
+            ++pos;
+        }
+    }
+}
+
+bool fillWeather(mongocxx::client& conn)
+{
+    std::ifstream ist(weatherPath);
+    ptree pt;
+    read_json(ist, pt);
+    bsoncxx::builder::stream::document doc{};
+    std::vector<std::thread*> threads;
+
+    fillDoc(pt, "", conn);
+
+    return true;
+}
+
+
+bool fillPowerPrices(mongocxx::client& conn)
+{
+    const int dateIndex = 0;
+    const int hourIndex = 1;
+    const int osloIndex = 10;
+
+    for(int year = 2013; year <= 2020; year++)
+    {
+        std::cout << "Year: " << year << "\n";
+        std::ifstream file;
+        file.open(powerPath + std::to_string(year) + powerExt);
+        auto table = readCSV(file);
+        for(int i = 3; i < table.size(); i++)
+        {
+            std::string date = table[i][dateIndex];
+            std::string hour = table[i][hourIndex];
+            std::string price = (table[i][osloIndex]);
+            boost::replace_all(price, ",", ".");
+
+            if(price.empty())
+            {
+                continue;
+            }
+            double priceNum = std::stod(price);
+            std::string time = date.substr(6, 4) + "-" + date.substr(3, 2) + "-" + date.substr(0, 2) + "T" + hour.substr(0, 2) + ":00:00";
+
+            bsoncxx::builder::stream::document document{};
+            auto builder = bsoncxx::builder::stream::document{};
+            bsoncxx::document::value doc_value = builder
+                    << "time" << time
+                    << "price" << priceNum
+                    << bsoncxx::builder::stream::finalize;
+                auto collection = conn["Terra"]["powerPrices"];
+                collection.insert_one(doc_value.view());
+        }
+    }
+        
+
+    return true;
+}
+
+
+
+
+
+
+
+\end{lstlisting}
+
+
+\subsubsection{Historical Hourly Avg. Power Price}
+\begin{lstlisting}
+import pandas as pd  
+import numpy as np  
+import matplotlib.pyplot as plt  
+from sklearn.model_selection import train_test_split 
+from sklearn.tree import DecisionTreeRegressor  
+from sklearn import metrics
+import datetime as dt
+import pymongo
+from mongoConfigFile import *
+
+hourPrices = [0] * 24
+hourPoints = [0] * 24
+hours = list(range(0, 24))
+
+clientUrl = ("mongodb+srv://{0}:{1}@terrasolaris-robmp.azure.mongodb.net/test?retryWrites=true&w=majority".
+		format(mongoUsername, mongoPassword))
+client = pymongo.MongoClient(clientUrl)
+db = client["Terra"]
+
+def main():
+	fillData()
+	drawPower()
+
+def fillData():
+	print("Fyller priser..")
+	collection = db["powerPrices"]
+	#cursor = collection.find({"time": "2005-01-01T00:00:00"})
+	cursor = collection.find({})
+	for document in cursor:
+
+		date = pd.to_datetime(document["time"])
+		hourPrices[int(date.hour)] += document["price"]
+		hourPoints[int(date.hour)] += 1
+
+def drawPower():
+	print("drawing")
+	X = []
+	for i in range(0, len(hours)):
+		X.append(hourPrices[i] / hourPoints[i])
+
+	y = hours
+
+	objects = hours
+	y_pos = np.arange(len(hours))
+	performance = X
+
+	plt.bar(y_pos, performance, align='center', alpha=0.5)
+	plt.xticks(y_pos, objects)
+	plt.ylabel('NOK per MWh')
+	plt.xlabel('Hour of day')
+	plt.title('Average hourly power price 2013-2020')
+
+	plt.show()
+
+main()
+\end{lstlisting}
+
+\subsubsection{Machine Learning}
+\paragraph{Solar Power Production}
 \begin {lstlisting}
 import pandas as pd  
 import numpy as np  
@@ -506,8 +761,9 @@ main()
 \end{lstlisting}
 
 \subsubsection{Web-Application}
-
-Test av cite \cite{ssb-consumption}
+\begin{lstlisting}
+%LIM INN KODEN DIN HER TARALD
+\end{lstlisting}
 
 
 \end{document}
