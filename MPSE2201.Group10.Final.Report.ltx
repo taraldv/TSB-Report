@@ -46,6 +46,16 @@
   long  = Corona Virus Disease 2019 ,
   class = abbrev
 }
+\DeclareAcronym{FFBD}{
+  short = FFBD ,
+  long  = Functional Flow Block Diagram,
+  class = abbrev
+}
+\DeclareAcronym{UML}{
+  short = UML ,
+  long  = Unified Modeling Language,
+  class = abbrev
+}
 
 
 
@@ -133,30 +143,88 @@ MPSE2201 System design and engineering}
 \section{Planning}
 \subsection{Contract of Operations}
 
-\includepdf[pages=-]{pdf/ContractTerra.pdf}
+\includepdf[pages=-]{pdf/Contract.pdf}
+
+
 \subsection{Complications due to \ac{COVID}}
+
 \subsection{Tools}
+
 \textbf{Jira}
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/programs/jira.png}
+ \caption{Jira Screenshot}
+ \end{figure}
+
 \textbf{Microsoft Teams}
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/programs/TeamsSnapshot.png}
+ \caption{Gantt Diagram Screenshot}
+ \end{figure}
+
 \textbf{Facebook Messenger}
+
 \textbf{Microsoft Visio}
+
 \textbf{Microsoft Word}
+
 \textbf{Microsoft Excel}
+
 \textbf{Adobe Illustrator}
+
 \textbf{Gantt}
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/programs/Gantt.png}
+ \caption{Gantt Diagram Screenshot}
+ \end{figure}
+
 \textbf{Draw.io}
+
 \textbf{Sweet Home 3D}
+
 \textbf{Solidworks}
+
 \textbf{Programming Languages}
+
 \textbf{Github}
+
 \textbf{MySQL}
+
 \textbf{MongoDB}
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/programs/mongoScreen.png}
+ \caption{MongoDB Screenshot}
+ \end{figure}
+
 \subsection{Internal Discussions}
 %THE PROBLEM
 \section{The Problem}
 \subsection{Understanding the Problem}
-\subsection{Stakeholders}
+
 \subsection{Context}
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/3d.png}
+ \caption{A 3D model of the building}
+ \end{figure}
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/SystemContextFolded.png}
+ \caption{The man-made systems in our systems immediate context}
+ \end{figure}
+
+\subsection{Stakeholders}
+
 %REQUIREMENTS
 \section{Requirements}
 \subsection{User Requirements}
@@ -167,13 +235,58 @@ MPSE2201 System design and engineering}
 \subsubsection{Non-Temporal Performance Requirements}
 \subsubsection{Interface Requirements}
 \subsubsection{Design Requirements}
+
+\subsection{Energy Consumption}
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/Ark9TechnicalBudgetEnergy.png}
+ \caption{A technical budget displaying the energy needs of the building}
+ \end{figure}
+
 %CORE TECHNICAL PROCESS
 \section{System Architecting}
 %Tier 0
 \subsection{Tier 0: The System in Its Context}
 \subsubsection{Operation}
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/UseCaseSystem.png}
+ \caption{Use case diagram for the system}
+ \end{figure}
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/drawio/BlackBoxSystem.png}
+ \caption{Black box of our system}
+ \end{figure}
+
+
 \subsubsection{Behavior}
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/drawio/FFBDSystem.png}
+ \caption{FFBD within our system}
+ \end{figure}
+
 \subsubsection{Structure}
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/drawio/ClassesSystemAbstractNew.png}
+ \caption{The system modeled as a UML class diagram, where all the classes are still abstract}
+ \end{figure}
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/ConceptMatrix.png}
+ \caption{Morphological diagram, showing possible concepts}
+ \end{figure}
+
+
+
 \paragraph{Harvesting Energy}
 
 \textbf{Solar}
@@ -201,31 +314,123 @@ MPSE2201 System design and engineering}
 \textbf{District Heating}
 
 \subsubsection{Trade-Off}
+
 \paragraph{Harvesting Energy}
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/pugh/harvestPugh.png}
+ \caption{Pugh matrix for harvesting energy}
+ \end{figure}
+
 \paragraph{Storing Energy}
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/pugh/storagePugh.png}
+ \caption{Pugh matrix for storing energy}
+ \end{figure}
+
 \paragraph{Generating Heat}
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/pugh/heatPugh.png}
+ \caption{Pugh matrix for generating heat}
+ \end{figure}
+
+
 \paragraph{Recommendations}
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/ConceptMatrixChosen.png}
+ \caption{Morphological diagram, showing the recommended concept}
+ \end{figure}
+
+
 \subsubsection{Derived Requirements}
 
 %Tier 1
 \subsection{Tier 1: The System}
 \subsubsection{Operation}
 
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/UsedByControlSystemUseCase.png}
+ \caption{Use case diagram, between subsystems}
+ \end{figure}
+
 \paragraph{Control System}
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/drawio/BlackBoxControlSystem2.png}
+ \caption{Black box of Control System}
+ \end{figure}
 
 \paragraph{Photovoltaic System}
 
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/drawio/BlackBoxSolarPanels.png}
+ \caption{Black box of Photovoltaic System}
+ \end{figure}
+
 \paragraph{Energy Storage system}
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/drawio/BlackBoxEnergyStorageSystem.png}
+ \caption{Black box of Energy Storage System}
+ \end{figure}
 
 \paragraph{Geothermal Heating/Cooling}
 
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/drawio/BlackBoxGeothermalHeat.png}
+ \caption{Black box of Geothermal Heating System}
+ \end{figure}
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/drawio/BlackBoxGeothermalCooling.png}
+ \caption{Black box of Geothermal Cooling System}
+ \end{figure}
+
 \subsubsection{Behavior}
 
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/drawio/FFBDSubsystems.png}
+ \caption{FFBD of the respective subsystems}
+ \end{figure}
+
 \subsubsection{Structure}
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/drawio/ClassesSubSystemsSimple.png}
+ \caption{Class diagram showing the subsystems}
+ \end{figure}
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/SystemDesign.png}
+ \caption{A more detailed structural model of our system and its context}
+ \end{figure}
 
 \subsubsection{Trade-Off}
 
 \paragraph{Control System}
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/pugh/controlPugh.png}
+ \caption{Pugh matrix for Control System}
+ \end{figure}
+
 
 \paragraph{Recommendations}
 
@@ -236,16 +441,57 @@ MPSE2201 System design and engineering}
 \subsection{Tier 2: Subsystems}
 \subsubsection{Energy Storage System}
 \paragraph{Behavior}
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/EnergySystemBehaviour.png}
+ \caption{Behavior of the Energy Storage System}
+ \end{figure}
+
 \paragraph{Structure}
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/drawio/ClassesEnergyStorageSystem.png}
+ \caption{Class diagram of the Energy Storage System}
+ \end{figure}
+
+\paragraph{Derived Requirements}
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/MachineLearning/HourlyPowerPrices.png}
+ \caption{Average hourly power prices 2013-2020}
+ \end{figure}
+
+
 \subsubsection{Control System}
 
 \paragraph{Operation}
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/InsideControlSystemUseCase.png}
+ \caption{Use case diagram within the control system}
+ \end{figure}
 
 \paragraph{Behavior}
 
 \textbf{Control Unit}
 
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/drawio/FFBDControlUnit.png}
+ \caption{FFBD for the Control Unit}
+ \end{figure}
+
 \textbf{\ac{MCU} (Main Communication Unit)}
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/drawio/FFBDMCCU.png}
+ \caption{FFBD for the MCU}
+ \end{figure}
 
 \textbf{Databases}
 
@@ -260,13 +506,43 @@ MPSE2201 System design and engineering}
 
 \textit{Continuous Data}
 
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/drawio/FFBDDateGatheringSoftware.png}
+ \caption{FFBD for the continuous data gathering software}
+ \end{figure}
+
 \textbf{Machine Learning Software}
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/drawio/FFBDMachineLearning.png}
+ \caption{FFBD for the machine learning software}
+ \end{figure}
 
 \textbf{Application / Website}
 
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/drawio/FFBDApplicationWebsite.png}
+ \caption{FFBD for the application/website}
+ \end{figure}
+
 \textbf{Developer Tools}
 
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/drawio/FFBDDevTools.png}
+ \caption{FFBD for the developer tools}
+ \end{figure}
+
 \paragraph{Structure}
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/drawio/ClassesControlSystem.png}
+ \caption{Class diagram for Control System}
+ \end{figure}
 
 \paragraph{Derived Requirements}
 
@@ -280,18 +556,93 @@ MPSE2201 System design and engineering}
 \subsection{Prototypes / Proof-of-Concept}
 \subsubsection{Machine Learning}
 \paragraph{Predicting Solar Panel Power Production}
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/MachineLearning/MLSolarShuffled2.png}
+ \caption{Machine learning prediction results for shuffled solar production}
+ \end{figure}
+
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/MachineLearning/MLSolar2.png}
+ \caption{Machine learning prediction results for chronological solar production}
+ \end{figure}
+
 \paragraph{Predicting Power Prices}
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/MachineLearning/HistoricalPowerPrices.png}
+ \caption{Power prices 2013-2020 in NOK/MWh}
+ \end{figure}
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/MachineLearning/MLPowerShuffle.png}
+ \caption{Machine learning prediction results for shuffled power prices}
+ \end{figure}
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/MachineLearning/MLPowerFeb.png}
+ \caption{Machine learning prediction results for chronological power prices}
+ \end{figure}
+
 \subsubsection{Web-Application}
 
 %RISK
 \section{Risk}
 
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/risk/DevRisk.png}
+ \caption{Risk matrix for development}
+ \end{figure}
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/risk/OpRisk.png}
+ \caption{Risk matrix for system operation}
+ \end{figure}
+
+
 %ECONOMICS
 \section{Economics}
 \subsection{Our Budget}
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/economics/budgetUs.png}
+ \caption{Budget for our company}
+ \end{figure}
+
+
+
 \subsection{Our Cash Flow}
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/economics/cashFlowUs.png}
+ \caption{Cash flow graph for our company}
+ \end{figure}
+
 \subsection{Residents Budget}
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/economics/budgetCust.png}
+ \caption{Budget for customer}
+ \end{figure}
+
 \subsection{Residents Cash Flow}
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/economics/cashFlowCust.png}
+ \caption{Cash flow graph for customer}
+ \end{figure}
 
 
 %CONCLUSION
