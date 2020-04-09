@@ -212,7 +212,9 @@ In general, panic and lockdown spread nationwide, and even though we were not sm
 
 \subsection{Development risk analysis}
 
-We performed risk analysis during development so one of these scenarios do not bankrupt us and cancel the project. 
+We performed risk analysis for our ongoing development so one of these scenarios do not bankrupt us and cancel the project. 
+
+The risk analysis matrix shows how likely each scenario is and how much it will affect us or the stakeholders negatively. And the recommended action is what we can do to reduce the risk or the severity.
 
 \begin{figure}[H]
  \centering
@@ -418,7 +420,49 @@ After we determined who our most important stakeholders are and their “proximi
 
 This is the Mecca of requirements. The holy grail. Finding these are crucial to understanding what the system should do and be, on a leveled basis. We started out with a viewpoint from a potential resident in our system/apartment complex in addition to scouring the internet for similar viewpoints to gain insight of the situation. With these viewpoints, we could find certain key words and phrases that were important enough for our group to focus on in our system equation. We were also asked to focus on the viewpoint of another type of stakeholder, which we decided was going to be OBOS. (As mentioned earlier, stakeholders) In our “constructed situation”, OBOS had hired us to take on this task. 
 
-\textcolor{red}{SETT INN STAKEHOLDER CONCERNS!!!}
+\subsubsection{Stakeholder concerns}
+\begin{enumerate}
+\item{OBOS}
+  \begin{itemize}
+    \item{Marketability}
+    \item{Enviromental}
+    \item{Profit margin}
+    \item{Installation time}
+    \item{Reliable}
+    \item{Regulations}
+  \end{itemize}
+\item{Residents}
+  \begin{itemize}
+    \item{Affordable}
+    \item{Enough energy}
+    \item{Non-intrusive service}
+    \item{Prestige}
+    \item{Adjustable temperature}
+    \item{Enviromental}
+    \item{User friendly app}
+  \end{itemize}
+\item{Statsnett}
+  \begin{itemize}
+    \item{Energy demand}
+    \item{Energy supply}
+  \end{itemize}
+\item{Installer}
+  \begin{itemize}
+    \item{Simplicity}
+    \item{Safety}
+  \end{itemize}
+\item{Maintainer}
+  \begin{itemize}
+    \item{Easy access}
+    \item{Good documentation}
+    \item{Safety}
+  \end{itemize}
+\item{Tech support}
+  \begin{itemize}
+  \item{Good documentation}
+  \end{itemize}
+\end{enumerate}
+
 
 As they were, these user requirements were still important to our system, but not practicable to implement into the system itself, which we needed to do. 
 
@@ -1167,8 +1211,10 @@ We have made a prototype of the “change temperature in apartment” function. 
 
 %RISK
 \section{System Risk Analysis}
-\textcolor{red}{Dette må skrives om etter vi flyttet den andre risk matrix}
-We made a risk analysis of our system during operation and of our development of the system. It shows how likely each scenario is and how much it will affect us negatively. We also have recommended tasks to perform to either reduce the risk or the severity.  
+
+We perform risk analysis for our system operation so one of these scenarios do not cause physical, emotional, psychological or social damage to our customer. 
+
+The risk analysis matrix shows how likely each scenario is and how much it will affect us or the stakeholders negatively. And the recommended action is what we can do to reduce the risk or the severity.
 
 \begin{figure}[H]
  \centering
@@ -1176,7 +1222,7 @@ We made a risk analysis of our system during operation and of our development of
  \caption{Risk matrix for system operation}
  \end{figure}
 
-We perform risk analysis during system operation so one of these scenarios do not cause physical, emotional, psychological or social damage to our customer. 
+
 
 
 %ECONOMICS
@@ -1276,7 +1322,119 @@ ur remote heating cost estimation is very generous. And the residents will still
 \subsection{Code}
 \subsubsection{Historical Weather Web-Crawler}
 \begin{lstlisting}
-%LIM INN KODEN DIN HER TARALD
+package frostapi;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.YearMonth;
+import org.apache.commons.codec.binary.Base64;
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
+
+public class FrostAPI {
+
+    private final static String STASJON = "18700";
+    private final static String[] DATAELEMENTS = {"air_temperature",
+        "cloud_area_fraction",
+        "cloud_area_fraction1",
+        "cloud_area_fraction2",
+        "cloud_area_fraction3",
+        "cloud_area_fraction4",
+        "surface_air_pressure",
+        "wind_speed",
+        "wind_speed_of_gust",
+        "dew_point_temperature",
+        "wind_from_direction",
+        "relative_humidity",
+        "precipitation_amount",
+        "weather_type",
+        "weather_type_automatic"};
+    private final static String AUTH = "REDACTED";
+    private final static String BASE64AUTH = new String(Base64.encodeBase64(AUTH.getBytes()));
+    private static BufferedWriter bw;
+    private static BufferedWriter logWriter;
+
+    public static void main(String[] args) throws Exception {
+        logWriter = new BufferedWriter(new FileWriter(new File("errors")));
+        bw = new BufferedWriter(new FileWriter(new File("fixedData.json")));
+        bw.write("{");
+        bw.newLine();
+        for (int i = 2005; i <= 2016; i++) {
+            loopYear(i);
+        }
+        bw.newLine();
+        bw.write("}");
+        bw.close();
+        logWriter.close();
+
+    }
+
+    private static void loopYear(int year) throws Exception {
+        for (int i = 1; i <= 12; i++) {
+            YearMonth yearMonthObject = YearMonth.of(year, i);
+            int daysInMonth = yearMonthObject.lengthOfMonth();
+            for (int j = 1; j <= daysInMonth; j++) {
+                sendRequest(year, i, j);
+            }
+        }
+
+    }
+
+    private static void sendRequest(int year, int month, int day) throws Exception {
+        String concat = ",";
+        for (int i = 0; i < 24; i++) {
+            try {
+                Connection.Response get = Jsoup.connect("https://frost.met.no/observations/v0.jsonld?sources=sn"
+                        + STASJON + "&referencetime=" + fullNumber(year) + "-"
+                        + fullNumber(month) + "-" + fullNumber(day) + "T" + fullNumber(i)
+                        + "&elements=" + constructElements())
+                        .header("authorization", "Basic " + BASE64AUTH)
+                        .method(Connection.Method.GET)
+                        .ignoreContentType(true)
+                        .execute();
+
+                if (i != 0) {
+                    concat += ",";
+                }
+                concat += "\"" + fullNumber(year) + fullNumber(month)
+                        + fullNumber(day) + fullNumber(i) + "\" :" + get.body();
+            } catch (IOException e) {
+                logWriter.write(fullNumber(year) + fullNumber(month)
+                        + fullNumber(day) + fullNumber(i));
+                logWriter.newLine();
+                logWriter.write(e.toString());
+                logWriter.newLine();
+                logWriter.write(e.getMessage());
+                logWriter.newLine();
+            }
+        }
+        bw.write(concat);
+    }
+
+    private static String fullNumber(int number) {
+        if (number < 10) {
+            return "0" + number;
+        } else {
+            return Integer.toString(number);
+        }
+    }
+
+    private static String constructElements() {
+        String elements = "";
+        for (int i = 0; i < DATAELEMENTS.length; i++) {
+            if (i != 0) {
+                elements += ",";
+            }
+            String dataElement = DATAELEMENTS[i];
+            elements += dataElement;
+        }
+        return elements;
+    }
+
+}
+
 \end{lstlisting}
 \subsubsection{MongoDB Filler}
 \begin{lstlisting}
@@ -1718,9 +1876,463 @@ main()
 \end{lstlisting}
 
 \subsubsection{Web-Application}
+\paragraph{script.js}
 \begin{lstlisting}
-%LIM INN KODEN DIN HER TARALD
+//Every room area is built with x,y coordinates. Always starting at top left corner, then going clockwise
+function Plan(width,height) {
+  this.bedroom1={color:"#C4CDE0",
+  name:"Soverom 1",
+  area:
+  width*3/5+","+0+" "
+  +width+","+0+" "
+  +width+","+height*1/6+" "
+  +width*3/5+","+height*1/6,
+  x:width*3.5/5,y:height*1/6/2};
+
+  this.bedroom2={color:"#CDE0C4",
+  name:"Soverom 2",
+  area:
+  width*3/5+","+height*1/6+" "
+  +width+","+height*1/6+" "
+  +width+","+height*2/6+" "
+  +width*3/5+","+height*2/6,
+  x:width*3.5/5,y:height*1/4};
+
+  this.bedroom3={color:"#CDE0C4",
+  name:"Soverom 3",
+  area:
+  0+","+height*5/6+" "
+  +width*2/6+","+height*5/6+" "
+  +width*2/6+","+height+" "
+  +0+","+height,
+  x:width*1/10,y:height*11/12};
+
+  this.hallway={color:"#A09CB3",
+  name:"Gang",
+  area:
+  0+","+0+" "
+  +width*3/5+","+0+" "
+  +width*3/5+","+height*3/6+" "
+  +width*2/5+","+height*3/6+" "
+  +width*2/5+","+height*1/12+" "
+  +0+","+height*1/12,
+  x:width*1/5,y:height*0.6/12};
+
+  this.office={color:"#C4CDE0",
+  name:"Kontor",
+  area:
+  0+","+height*1/12+" "
+  +width*2/5+","+height*1/12+" "
+  +width*2/5+","+height*1.5/6+" "
+  +0+","+height*1.5/6,
+  x:width*1/6,y:height*1/6};
+
+  this.livingroomAndKitchen={color:"#E0C4CD",
+  name:"Stue og kjokken",
+  area:
+  0+","+height*2.5/6+" "
+  +width*2/5+","+height*2.5/6+" "
+  +width*2/5+","+height*3/6+" "
+  +width+","+height*3/6+" "
+  +width+","+height+" "
+  +width*2/6+","+height+" "
+  +width*2/6+","+height*5/6+" "
+  +0+","+height*5/6+" ",
+  x:width*1/2,y:height*3/4};
+
+  this.bathroom1={color:"#C4DBE0",
+  name:"Bad 1",
+  area:
+  width*3/5+","+height*2/6+" "
+  +width+","+height*2/6+" "
+  +width+","+height*3/6+" "
+  +width*3/5+","+height*3/6,
+  x:width*3.5/5,y:height*4.2/10};
+
+  this.bathroom2={color:"#C4DBE0",
+  name:"Bad 2",
+  area:
+  0+","+height*1.5/6+" "
+  +width*2/5+","+height*1.5/6+" "
+  +width*2/5+","+height*2.5/6+" "
+  +0+","+height*2.5/6,
+  x:width*1/6,y:height*2/6};
+};
+
+function applyTempIndexEventListeners(){
+  //temperatureValueArray contains temperatures matching the index from Plan obj.
+  let container = document.getElementById('svgContainer');
+  let svg = document.createElementNS("http://www.w3.org/2000/svg","svg");
+  let width = document.body.clientWidth;
+  let height = width*2;
+  let romPlan = new Plan(width,height);
+  let keys = Object.keys(romPlan);
+  for (var i = 0; i < keys.length; i++) {
+    let tempGroup = document.createElementNS("http://www.w3.org/2000/svg","g");
+    let roomName = romPlan[keys[i]].name
+    tempGroup.setAttribute("data-url",roomName);
+    tempGroup.addEventListener("click",function(){
+      let roomName = this.getAttribute("data-url");
+      //console.log(roomName);
+      window.location.href = "/temperatur/endre?rom="+roomName.toLowerCase();
+    });
+    let tempPolygon = document.createElementNS("http://www.w3.org/2000/svg","polygon");
+    let tempTextRoom = document.createElementNS("http://www.w3.org/2000/svg","text");
+    tempTextRoom.innerHTML = roomName;
+    tempTextRoom.setAttribute("x",romPlan[keys[i]].x);
+    tempTextRoom.setAttribute("y",romPlan[keys[i]].y);
+    let tempTextTemperature = document.createElementNS("http://www.w3.org/2000/svg","text");
+    tempTextTemperature.innerHTML = temperatureValueArray[i]+"C";
+    tempTextTemperature.setAttribute("x",romPlan[keys[i]].x);
+    tempTextTemperature.setAttribute("y",romPlan[keys[i]].y+20);
+    tempPolygon.setAttribute("points",romPlan[keys[i]].area);
+    tempPolygon.setAttribute("stroke","black");
+    tempPolygon.setAttribute("fill",romPlan[keys[i]].color);
+    tempGroup.appendChild(tempPolygon);
+    tempGroup.appendChild(tempTextRoom);
+    tempGroup.appendChild(tempTextTemperature);
+    svg.appendChild(tempGroup);
+  }
+  
+  svg.setAttribute("width",width);
+  svg.setAttribute("height",height);
+
+
+  container.appendChild(svg);
+}
+
+function findRoomId(roomName){
+  let romPlan = new Plan(0,0);
+  let keys = Object.keys(romPlan);
+  for (var i = 0; i < keys.length; i++) {
+    if (roomName==romPlan[keys[i]].name) {
+      return i+1;
+    }
+  }
+}
+
+function applyTempChangeEventListeners(){
+  //Smaller variable = quicker temperature update
+  var responsiveness = 50;
+
+  var currentAngle = 0;
+  var tempChange = 0;
+
+  var roomId = findRoomId(document.getElementById("romDiv").innerText);
+  setInitalTemperature(roomId);
+  
+  var temperatureWheel = document.getElementById('temperatureWheel');
+  var region = new ZingTouch.Region(temperatureWheel);
+  region.bind(temperatureWheel, 'rotate', function(e){
+    tempChange += e.detail.distanceFromLast;
+    currentAngle += e.detail.distanceFromLast;
+    temperatureWheel.style.transform = 'rotate(' + currentAngle + 'deg)';
+    let temperatureDerivedFromAngle = Math.round(tempChange/responsiveness);
+    if(temperatureDerivedFromAngle != 0){
+      tempChange = 0;
+      updateRoomTemperature(temperatureDerivedFromAngle,roomId);
+    }
+  });
+}
+
+function setInitalTemperature(id){
+  var roomTemperatureDiv = document.getElementById('degrees');
+  var oReq = new XMLHttpRequest();
+  oReq.addEventListener("load", function(){
+    let data = JSON.parse(this.response);
+    roomTemperatureDiv.innerText = data.temperatureValue;
+  });
+  oReq.open("POST", "/temperatur/getSpecificTemperature");
+  oReq.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  oReq.send("temperatureId="+id);
+}
+
+function updateRoomTemperature(degrees,id){
+  let roomTemperatureDiv = document.getElementById('degrees');
+  let oldTemperature = parseInt(roomTemperatureDiv.innerText);
+  let newTemperature = oldTemperature+degrees;
+  //User limit on temperature control
+  if(newTemperature<=30 && newTemperature>=15){
+    roomTemperatureDiv.innerText = newTemperature;
+    var oReq = new XMLHttpRequest();
+    oReq.addEventListener("load", function(){
+    });
+    oReq.open("POST", "/temperatur/updateSpecificTemperature");
+    oReq.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    oReq.send("temperatureId="+id+"&temperatureValue="+newTemperature);
+  }
+}
+
 \end{lstlisting}
 
+\paragraph{nav.php}
+\begin{lstlisting}
+<?php 
+$action = $this->getAction();
+?>
+<nav class="navbar navbar-light bg-light">
+  <img style='width: 120px' src="/img/logo2.png">
+  <a href="/temperatur"><button class="btn-lg btn-primary" type="button">Tilbake</button></a>
+  <a href="/"><button class="btn-lg btn-primary" type="button">Meny</button></a>
+</nav>
+\end{lstlisting}
+
+\paragraph{header.php}
+\begin{lstlisting}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>TSB App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="/main.css" type="text/css" media="all" rel="stylesheet">
+  <link href="/lib/bootstrap/bootstrap.min.css" type="text/css" media="all" rel="stylesheet">
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/zingtouch/1.0.6/zingtouch.min.js'></script>
+</head>
+<body class='bg-light'>
+<script src='/script.js'></script>
+\end{lstlisting}
+
+\paragraph{footer.php}
+\begin{lstlisting}
+</body>
+</html>
+\end{lstlisting}
+
+\paragraph{Temperatur index.php}
+\begin{lstlisting}
+<?php include VIEW.'header.php';?>
+<?php include VIEW.'nav.php';?>
+<div class='container-fluid p-0'>
+  <h1 class="text-center">
+    Velg rom
+  </h1>
+  <div id='svgContainer' class='media'>
+  </div>
+</div>
+<script>
+  let temperatureValueArray = [
+  <?php
+  foreach ($this->viewData as $row) {
+      echo $row['temperatureValue'].",";
+  }
+  ?>
+  ];
+  applyTempIndexEventListeners();
+</script>
+<?php include VIEW.'footer.php';?>
+\end{lstlisting}
+
+\paragraph{endre.php}
+\begin{lstlisting}
+<?php include VIEW.'header.php';?>
+<?php include VIEW.'nav.php';?>
+<div class='container-fluid'>
+  <h1 class="text-center">
+    <div class='d-inline-block' id='romDiv'>
+      <?php
+        echo ucfirst("$this->viewData");
+      ?>
+      
+    </div>
+    <br>
+    <div class='d-inline-block'> temperatur:</div>
+    <div class='d-inline-block' id='degrees'></div>
+    <div class='d-inline-block' id='celcius'>C</div>
+  </h1>
+  <div id='temperatureWheelContainer' class='media ml-5 mr-5'>
+    <img class='img-fluid' data-angle='0' id='temperatureWheel' src="/img/wheel.png">
+  </div>
+</div>
+<script>
+  applyTempChangeEventListeners();
+</script>
+<?php include VIEW.'footer.php';?>
+\end{lstlisting}
+
+\paragraph{index.php}
+\begin{lstlisting}
+<?php include VIEW.'header.php';?>
+<div style='text-align: center;'>
+<img style='width: 200px;' src="/img/logo2.png">
+
+<h1>Energi kontroll</h1>
+<h3>Leilighet 5 D</h3>
+</div>
+<div class="indexDiv">
+   <a href="/temperatur"><button class="btn-lg btn-primary" type="button">Endre temperatur i leilighet</button></a>
+   
+   </div>
+   <div class="indexDiv">
+   <a href="/"><button class="btn-lg btn-primary" type="button">Oversikt over stromforbruk</button></a>
+  
+   </div>
+    <div class="indexDiv">
+    <a href="/"><button class="btn-lg btn-primary" type="button">Endre lade-innstillinger for el-bil</button></a>
+    </div>
+
+<?php include VIEW.'footer.php';?>
+\end{lstlisting}
+
+\paragraph{TemperaturModel.php}
+\begin{lstlisting}
+<?php
+class TemperaturModel extends Model{
+  
+  public function getAllTemperatures(){
+    $data = $this->query("SELECT temperatureValue FROM temperatureTable")->fetchAll();
+    return $data;
+  }
+
+  public function getSpecificTemperature($id){
+    $data = $this->query("SELECT temperatureValue FROM temperatureTable WHERE temperatureId = $id")->fetch();
+    return $data;
+  }
+
+  public function updateSpecificTemperature($temperature,$id){
+    $data = $this->query("UPDATE temperatureTable SET temperatureValue = $temperature WHERE temperatureId = $id")->fetch();
+    return $data;
+  }
+}
+?>
+\end{lstlisting}
+
+\paragraph{TemperaturController.php}
+\begin{lstlisting}
+<?php
+class TemperaturController extends Controller{
+
+  public function updateSpecificTemperature(){
+    $this->model('TemperaturModel');
+    $temperatureId = $_POST['temperatureId'];
+    $temperatureValue = $_POST['temperatureValue'];
+    $this->model->updateSpecificTemperature($temperatureValue,$temperatureId);
+  }
+
+  public function getSpecificTemperature(){
+    $this->model('TemperaturModel');
+    $temperatureId = $_POST['temperatureId'];
+    $data = $this->model->getSpecificTemperature($temperatureId);
+    echo json_encode($data);
+  }
+
+  public function endre(){
+    if(count($_GET) > 0){
+      $this->view('temperatur'.'/'.'endre.php',$_GET['rom']);
+      $this->view->render();
+    } else {
+      header("/");
+    }
+  }
+  public function index(){
+    $this->model('TemperaturModel');
+    $temperatures = $this->model->getAllTemperatures();
+    $this->view('temperatur'.'/'.'index.php',$temperatures);
+    $this->view->render();
+    
+  }
+}
+?>
+\end{lstlisting}
+
+\paragraph{HomeController.php}
+\begin{lstlisting}
+<?php
+class HomeController extends Controller{
+  public function index(){
+    
+    $this->view('home'.'/'.'index.php');
+    $this->view->render();  
+  }
+}
+?>
+\end{lstlisting}
+
+\paragraph{Application.php}
+\begin{lstlisting}
+<?php
+class Application{
+  protected $controller = 'HomeController';
+  protected $action = 'index';
+
+  public function __construct(){
+    $this->prepareURL();
+    $this->controller = ucfirst($this->controller);
+    if(file_exists(CONTROLLER.$this->controller.'.php')){
+      $this->controller = new $this->controller;
+      if(method_exists($this->controller,$this->action)){
+        call_user_func_array([$this->controller,$this->action],[]);
+      }
+    }
+  }
+  protected function prepareURL(){
+    $request = trim($_SERVER['REQUEST_URI'],'/');
+    if(!empty($request)){
+      $token = explode('?', $request);
+      $urlArray = explode('/',$token[0]);
+      if(isset($urlArray[0])){
+        $this->controller = $urlArray[0].'Controller';
+      }
+      if(isset($urlArray[1])){
+        $this->action =  $urlArray[1];
+      }
+    } 
+  }
+}
+?>
+
+\end{lstlisting}
+
+\paragraph{Model.php}
+\begin{lstlisting}
+<?php
+class Model extends PDO{
+  private $dsm = 'mysql:dbname=tsb;host=localhost;charset=UTF8';
+  private $user = 'tsb';
+  private $pw = '';
+  public function __construct(){
+    parent::__construct($this->dsm,$this->user,$this->pw);
+    }
+}
+?>
+\end{lstlisting}
+
+\paragraph{View.php}
+\begin{lstlisting}
+<?php
+class View{
+  
+  protected $viewData;
+  protected $viewFile;
+
+  public function __construct($viewFile,$viewData){
+    $this->viewData = $viewData;
+    $this->viewFile = $viewFile;
+  }
+  public function getAction(){
+    return (explode('/',$this->viewFile)[1]);
+  }
+  public function render(){
+    if(file_exists(VIEW.$this->viewFile)){
+      include VIEW.$this->viewFile; 
+    }
+  }
+}
+\end{lstlisting}
+
+\paragraph{Controller.php}
+\begin{lstlisting}
+<?php
+abstract class Controller{
+  protected $model;
+  protected $view;
+  public function model($modelName){
+    $this->model = new $modelName;
+  }
+  public function view($viewName,$data=[]){
+    $this->view = new View($viewName,$data);
+  }
+}
+\end{lstlisting}
 
 \end{document}
