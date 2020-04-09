@@ -19,6 +19,7 @@
 \usepackage{array}
 \usepackage{acro}
 \usepackage{pdfpages}
+\usepackage{gensymb}
 
 
 
@@ -62,6 +63,11 @@
 \DeclareAcronym{CRUD}{
   short = CRUD ,
   long  = Create Read Update Delete,
+  class = abbrev
+}
+\DeclareAcronym{JSON}{
+  short = JSON ,
+  long  = JavaScript Object Notation ,
   class = abbrev
 }
 
@@ -127,6 +133,8 @@ MPSE2201 System design and engineering}
 \newpage
 \section{Abstract}
 
+Final project report in Systems Design and Engineering. The report explains how we would design a system to make large apartment complexes reach a zero-emission goal and how we would employ a system engineering approach to develop the product. 
+
 \newpage
 
 \tableofcontents
@@ -145,16 +153,72 @@ MPSE2201 System design and engineering}
 %INTRODUCTION
 \section {Introduction}
 \subsection{Assignment}
+
+People are getting more conscious to the impact we make on the environment, and we need to find ways to reduce our emissions. And reduce the amount of fossil fuel we are consuming. 
+
+We can also see that we are using more and more power in our homes, according to Norges vassdrags og energidirektorat the amount of power consumption of homes accounts for 48\% \cite{NVE} of Norway's power consumption, in Norway about 70\%\cite{SMARTEPENGER} of this is used for heating of space and domestic hot water. 
+
+If we can find ways to generate power in or around the buildings. And reduce the amount of electrical heating we rely on, we can make a positive impact on the world. 
+
+In this report we will describe the details of our system and show the design process of our system up until the building phase. 
+
+We will design a smart system to help buildings reduce energy consumption and increase energy production, using these systems engineering activities: 
+
+\begin{itemize}
+\item{Plan the system engineering approach, to help with our system engineering activities. }
+\item{Identify system functional input requirements and needs from stakeholders that have an impact on the system of interest.}
+\item{Identify system functional input requirements and needs from stakeholders that have an impact on the system of interest.}
+\item{Identify system boundary and use cases.}
+\item{Capture system functions and logical interfaces.}
+\item{Identify logical architecture.}
+\item{Allocate functions to logical architecture.}
+\item{ Identify physical architecture.}
+\item{Create test, verification and validation plan.}
+\end{itemize}
 \subsection{Report}
+
+This report will explain our approach to solving the assigned problem using systems engineering. We start by explaining our planning and some tools we chose to aid our engineering work.  
+
+Understanding the problem and understanding what our customer cares about is important. We also map out other essential stakeholders and their concern. We then talk about the context in which our system will operate. 
+
+To explain our product, we start at a high abstract level, then as we go deeper into subsystems, we explain what design choices were made and why. 
+
+We touch on the verification plan for some of the most critical requirements from our requirement document. And talk about the performance verification of our system. 
+
+We finish the report with a risk matrix for both development and operation. We explain how we will monetize the product. And how our customer will end up profiting from buying it. 
+
 \subsection{Our Systems Engineering Process}
+
+In this report we have tried presenting the process in a linear fashion, but of course in reality it was anything but.  
+
+The first iteration of the process was kickstarted by Gerrit in the first few weeks of the course, here we went through the 20 steps that would make up the final homework we submitted to Gerrit. This was helpful as we knew nothing about systems engineering at the time. Gradually however, we would start to own the process more and more.  
+
+After the initial exploration we had a frame for further exploration. The main goal onward was to unfold the system and to apply the systems engineering process on the subsystems as well. Along the way these explorations led to us revisiting all the previous steps and reconsidering several aspects of our system. For example, the fact that we had to increase the roof area to living area ratio would never have been found as early as it was if the process had been linear. If this was a real project this would have led to major setbacks both in terms of time and money.  
+
+There were also several explorations into technologies and options that led to a dead-end, but it was still valuable to dive into them in order to make sure that we found the most viable concept available to us.  
+
 %PLANNING
 \section{Planning}
 \subsection{Contract of Operations}
 
+In order to make the teamwork function properly, one of the first things we agreed upon was the contract of operations. This was important in order to consolidate how the dynamics of the group should function, and to avoid conflicts.
 \includepdf[pages=-]{pdf/Contract.pdf}
 
-
 \subsection{Complications due to \ac{COVID}}
+
+After the COVID-19 breakout of 2020, we had to change our plans and “reiterate” our development process in and of itself. Pure online meetings, no more ink and paper. Although we already had connected online using several tools, moving our physical meetings online was an interesting change. In addition to our meetings, our classes were shifted online. 
+
+In general, panic and lockdown spread nationwide, and even though we were not smitten with the virus ourselves, all of these factors were indirectly impacting this group. 
+
+\subsection{Development risk analysis}
+
+We performed risk analysis during development so one of these scenarios do not bankrupt us and cancel the project. 
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/risk/DevRisk.png}
+ \caption{Risk matrix for development}
+ \end{figure}
 
 \subsection{Tools}
 
@@ -166,6 +230,8 @@ MPSE2201 System design and engineering}
  \caption{Jira screenshot}
  \end{figure}
 
+Jira is a site/tool used for all types of group work. Originally a software meant to track bugs and issues, reformatted for common use. It has several functions leaning towards iteration and managing projects, through workflows, tracking of issues, progress reports, logging, scrum boards, backlogs, and more, all in all making a good fit for use in our systems engineering project. 
+
 \textbf{Microsoft Teams}
 
 \begin{figure}[H]
@@ -174,15 +240,32 @@ MPSE2201 System design and engineering}
  \caption{Microsoft Teams screenshot}
  \end{figure}
 
+Teams is a communication platform that includes chat, video conferencing, file storage, file sharing, and application integration. It is the evolution and upgrade path from Microsoft Skype for Business. It allows for efficient collaboration and sharing, keeping us all up to date with the project at all times. Having such a tool is import for our systems engineering project. 
+
+
 \textbf{Facebook Messenger}
+
+Another communication platform that includes chat and calls, more lightweight and easier to communicate using overall. Good for fast messaging and important announcements. 
 
 \textbf{Microsoft Visio}
 
+Visio is a diagramming and vector graphics application, capable of mind-mapping, concept design, and flowcharts used in for example systems engineering in general. To our group it was vital in visualizing our project. 
+
 \textbf{Microsoft Word}
+
+Word is a commonly used writing tool with a wide variety of uses. When using Teams, Word is an obvious choice for text documents. As it allows multiple people to work on the same document in real time.  
 
 \textbf{Microsoft Excel}
 
+Excel is a commonly used spreadsheet tool with a wide variety of uses. 
+
+\textbf{LaTeX}
+
+\textcolor{red}{HUSK Å SKRIVE NOE OM LATEX}
+
 \textbf{Adobe Illustrator}
+
+Another tool used to visualize our project, for example mind-mapping, concept design, flowcharts, in addition to logo development for our group. 
 
 \textbf{Gantt}
 
@@ -192,13 +275,29 @@ MPSE2201 System design and engineering}
  \caption{Gantt diagram screenshot}
  \end{figure}
 
+A Gantt chart, commonly used in project management, is a way to view activities displayed over time. On the left side of the chart is a list of activities and along the top is a suitable time scale. Each activity is represented by a bar; the length and position of the bar reflects the start date, duration and end date of the activity. This allows you to see, what the various activities are, when each activity starts and ends, how physician each activity is scheduled to last, where activities overlap with other activities, and the start and end date for the entire project. To our project, having such a chart gives an overview to easier plan ahead and divide the contents among each other. 
+
 \textbf{Draw.io}
+
+Yet another tool used to visualize our project, for example mind-mapping, concept design, and flowcharts. This program is online and in browser, for easy access and completion, again making it easier to iterate consecutively. 
 
 \textbf{Sweet Home 3D}
 
+An open source modeling tool. Used to draw a 3D model of the building.
+
 \textbf{Solidworks}
 
+Used to model the apartment complex with the energy.
+
 \textbf{Programming Languages}
+
+One can use programming to develop programs to automate all kinds of time-consuming tasks.  
+
+Different languages have different advantages, but mainly it is up to the developer and his/her proficiency in the language to decide if it’s the right tool for the job. 
+
+We have used programming for our machine learning prototype, the website prototype, parse data, communicate with API’s, and download data. 
+
+We used a mix of Python, C++, Java and PHP. 
 
 \textbf{Github}
 
@@ -208,10 +307,17 @@ MPSE2201 System design and engineering}
  \caption{Github web-application repo screenshot}
  \end{figure}
 
+We used GitHub to maintain the codebase for all our programs. It helps multiple developers work simultaneously on the same program. 
+
 \textbf{MySQL}
+
+For relational databases, described in detail at page XX 
+\textcolor{red}{HUSK REFERERE TIL SIDE!}
 
 \textbf{MongoDB}
 
+MongoDB is a widely used NoSQL implementation suitable for big data. This helped us prototype our machine learning, and is described in detail on page  X. 
+\textcolor{red}{HUSK REFERERE TIL SIDE!}
 \begin{figure}[H]
  \centering
   \includegraphics[width=\linewidth]{img/programs/mongoScreen.png}
@@ -219,11 +325,40 @@ MPSE2201 System design and engineering}
  \end{figure}
 
 \subsection{Internal Discussions}
+
+At the very beginning, we started out getting to know each other throughout the first couple of meetings, establishing a system engineer as well, that would have an overview over the whole process. Having an established systems engineer is an advantage so the rest can focus on their areas of interest. In general, a good systems engineer will combine the efforts of all disciplines, while having a leveled head and an overview. They will be focusing on the implementations. They will need an agile mindset. Always being able to move on, shifting focus back and forth to iterate. Never quite nailing down anything, and always keeping an open mind for changes. 
+
+As mentioned, we chose to divide the tasks among ourselves to efficiently tackle all disciplines needed. Being able to have this wide range was not only beneficial in general but enabled us to delve deeper than if we were to handle every subject as a group. As that would include a lot of meddling and internal discussions. 
+
+Much like what can be referred to as trade-off, our group had many internal discussions regarding the problem and process itself, leading to new viewpoints and crucial decisions directing us onto a certain path onwards. While yes, we have had to backtrack, as is an essential part of reiterating, but some decisions, such as work ethics, group synergy and division among the group are not relevant to this specific systems engineering project, but more our abilities to work together efficiently as a group/group projects in general.
+
+
+
 %THE PROBLEM
 \section{The Problem}
 \subsection{Understanding the Problem}
 
+In order to find a solution, we need to properly understand the problem, to do this we made the scope smaller. By placing our building in Oslo and making it an apartment complex we made the problem more manageable, now we had a specific place and conditions to produce a solution for.
+
+\textcolor{red}{HUSK Å LIME INN KART!!}
+
+To see the problem from the point of view of the people that are living with the problem and are supposed to interact with the solution, we made this user story: 
+
+\begin{tcolorbox}
+\textit{Hans Kammerfast (45), his wife Birgit (46) and their two children lived in a mansion, having three gas cars and oil heating. They lived great, but spent a lot of energy on heating and had difficulties: They struggled with the children, that didn’t get to heat their room after the cold night before they had to leave for school. Birgit felt like an environmental pig, and Hans wasn’t too convinced whether what they did necessarily was bad for the environment. In addition, Hans was annoyed owning to the unreasonable electricity prices, and it affected the well-being of the whole family. }
+
+\vspace{5mm}
+
+\textit{Following the first time Hans really got to see the statistics over his own emissions, he got a revelation. He felt dirty and wasteful. Unhappy with today's environmental decline due to fossil fuels, the family found that they wanted to contribute to a better everyday life. So they are currently searching for something better: a solution… }
+\end{tcolorbox}
+
+When we see the problem this way it illuminates the possibilities to make life easier for the users at the same time as we offer a solution to the problem. 
+
+So, who will our solution affect when we take location into account? How do we interact with the municipality? How will our system affect neighbors? What sort of laws do we have to uphold?  These are some of the questions we need answers to. 
+
 \subsection{Context}
+
+We first made a quick sketch of the building. As it is the most important man-made system our system will interact with. 
 
 \begin{figure}[H]
  \centering
@@ -231,13 +366,24 @@ MPSE2201 System design and engineering}
  \caption{The initial sketch of the context}
  \end{figure}
 
+In order to have any realistic hope of achieving a 100\% self-sustainable system, the building will have to be built according to these requirements: 
 
+\begin{itemize}
+\item{The building shall fulfill all requirements specified in NS3700 }
+\item{The building shall fulfill all requirements specified in TEK17}
+\end{itemize}
+
+The NS3700 is a standard that specifies requirements for buildings in order to be classified as a passive house. Enova has found that this will only cost developers about 1200 NOK more per square meter\cite{ENOVA}.
+
+We also made a 3D model of the building to better show our stakeholders how it would affect their building. 
 
 \begin{figure}[H]
  \centering
   \includegraphics[width=\linewidth]{img/3d.png}
  \caption{A 3D model of the building}
  \end{figure}
+
+We then spent some time finding out all the man-made systems which will interact with our system. We found problems which might ordinarily only be discovered near the end of development or even after the system is finished and placed in the real world. 
 
 \begin{figure}[H]
  \centering
@@ -247,12 +393,56 @@ MPSE2201 System design and engineering}
 
 \subsection{Stakeholders}
 
+We wrote down a list of as many stakeholders we could possibly think of.  
+
+When looking at our system from their point of view, we find a good solution early. We avoid working on a bad solution because we did not consider, for example, how the neighbor would be affected. 
+
+Then we made an onion-diagram to place the stakeholders according to how “close” they are to the system, and how much they are affected by the system. 
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/StakeholderOnionDiagram.png}
+ \caption{An onion diagram showing the stakeholders}
+ \end{figure}
+
+After we determined who our most important stakeholders are and their “proximity” to the system, we started finding their concerns, these are crucial for developing the system, from the concerns of the stakeholders we can develop requirements for our system. 
+
 %REQUIREMENTS
 \section{Requirements}
 \subsection{User Requirements}
 
+This is the Mecca of requirements. The holy grail. Finding these are crucial to understanding what the system should do and be, on a leveled basis. We started out with a viewpoint from a potential resident in our system/apartment complex in addition to scouring the internet for similar viewpoints to gain insight of the situation. With these viewpoints, we could find certain key words and phrases that were important enough for our group to focus on in our system equation. We were also asked to focus on the viewpoint of another type of stakeholder, which we decided was going to be OBOS. (As mentioned earlier, stakeholders) In our “constructed situation”, OBOS had hired us to take on this task. 
+
+\textcolor{red}{SETT INN STAKEHOLDER CONCERNS!!!}
+
+As they were, these user requirements were still important to our system, but not practicable to implement into the system itself, which we needed to do. 
+
+\subsection{Analysis of Competition}
+\textcolor{red}{HØRER DENNE HJEMME HER?}
+
+After finding some main guidelines, we chose to research our competitors, both immediate (other groups with the project) and real (established companies), to compare and assess the reality of the situation. The research gave us clear trends, opportunities and problems, that are both outside of our system, in addition to potential problems our system could have. 
+
+Some reoccurring trends were the focus of “Green energy”, having a clean conscience and future planning, where future planning is including the distant future’s impact on the product in the calculations. We understood this was a necessary part in the development of our project, so we used that to make both a schedule for the lifetime of our product in addition to finding some new requirements. 
+
+As with trends, there were some opportunities for our group, with companies wanting new blood and fresh eyes to keep up in an ever-changing society. 
+
+The problems with the market in which our group are resigning in, is that it is saturated with large multimillion-dollar companies, who are trusted in what seems to be something among the lines of monopoly, with an example being the Ramboll group (engineering, architecture and consultancy company), involved in many Norwegian projects like Vestsiden ungdomsskole in Kongsberg. 
+
+In addition to these, we also found some internal policies for an example company connected to engineering as they were using an approach called RAMS. RAMS is a characteristic of a system’s long term operation and is achieved by the application of established engineering concepts, methods, tools and techniques throughout the lifecycle of the system. 
+
+European Railway Standard: “In railway engineering, as in most forms of transport, safety is a paramount. However, it is influenced by, and interlinked to, availability of the system. Availability is influence by operations and maintenance practices as these determine the reliability and maintainability of the system.” 
+
 
 \subsection{Effectiveness Measures}
+\textcolor{red}{DENNE DELEN BØR SEES OVER}
+
+Our group had a proper discussion regarding what the difference of user requirements and effectiveness measures were, differing between chosen user requirements that by themselves, as they are “make-or-break” the system, and a reformulation of the user requirements more suitable to use for finding the next level of requirements more practicable for the system. No matter the difference, we made the decision to trust in what teacher Gerrit implied, from which we understood it, and find the most important user requirements that “make-or-break” the system so they could be our effectiveness measures. 
+
+\textcolor{red}{INSERT EFFECTIVENESS MEASURES}
+
+In addition to our systems effectiveness measures, we also focused on what the effectiveness measures for our important technology would be, like the V2B, which we used for, among other things, a behavioral model for the V2B, which we will get back to later. 
+
+We again used these effectiveness measures to find the more practicable requirements for our system. We used a method called key driver diagram. 
 
 \begin{figure}[H]
  \centering
@@ -266,14 +456,42 @@ MPSE2201 System design and engineering}
  \caption{Key-driver-graph for the users of our system}
  \end{figure}
 
+In this diagram the main goal is to find quantifiable numbers to use in our system equations which we can cross check and implement later. 
+
+From this diagram we found for example the mean time to failure (MTTF) of our system should be XXX, which changes the system in a mechanical way, perhaps changing the price range, in addition to ensuring a longer lifetime of said part. It is important to pay attention to the make-or-break requirements in this way as they yield some of the highest gains one could get. 
+
+
 \subsection{System Requirements}
-\subsubsection{Functional}
-\subsubsection{Temporal Performance}
-\subsubsection{Non-Temporal Performance Requirements}
-\subsubsection{Interface Requirements}
-\subsubsection{Design Requirements}
+\textcolor{red}{DENNE DELEN BØR SEES OVER}
+
+Now, one can divide these system requirements into several sub-categories; 
+\begin{itemize}
+\item{Functional}
+\item{Temporal Performance}
+\item{Non-Temporal Performance Requirements}
+\item{Interface Requirements}
+\item{Design Requirements}
+\end{itemize}
+
+Our focus was to find Key performance parameters (KPPs), as they were referred to as. In reality, these parameters are a mix of the other types of requirements molded and mixed together. 
+
+\textcolor{red}{INSERT REQUIREMENTS DOCUMENT???}
 
 \subsection{Energy Consumption}
+
+The energy consumption of the apartments and the whole building complex will decide what kind of system is viable.  
+
+Finding numbers is important when it comes to trade-off analysis. But as students we are not always equipped to simulate all our estimates. We did not want to spend too much time learning different software to simulate a buildings energy consumption. We wanted to focus on the subject at hand, which is system engineering. 
+
+For our estimates we decided to use the Norwegian building standard Tek17 as a guideline. It contains energy consumption regulatory limits for new buildings. It has maximum numbers per m2 for ventilation and total energy consumption \cite{TEK17VEILEDNING}\cite{TEK17ENERGIEFFEKTIVITET}.  
+
+For heating we used another Norwegian standard which has maximum numbers for heating per m2\cite{NS3700}
+
+For lights and appliances, we used numbers from an average home gathered by a popular power supplier in Norway, Hafslund strøm. The average light in Norway is not LED however. So, we divided the light consumption by 10.  \cite{HAFSLUND}
+
+Electrical vehicle charging consumption is estimated from how far an average personal vehicle in Norway drives per year. Which is 12000km \cite{SSBBIL}. And how much energy an electric vehicle use per 10km driven. Which is between 1 and 2,5kWh\cite{FJORDKRAFT}. We decided to estimate on the safe side and use 2kWh per 10km driven.  
+
+For elevators we used a popular calculator online and used the most energy efficient solution.\cite{THYSSEN}
 
 \begin{figure}[H]
  \centering
@@ -283,6 +501,9 @@ MPSE2201 System design and engineering}
 
 %CORE TECHNICAL PROCESS
 \section{System Architecting}
+\textcolor{red}{DENNE MÅ SKRIVES OM KENT!}
+We will now look at the architecture of the system. This is a process which takes place on many levels or tiers. At tier 0, we will look at the system in the highest level of abstraction. This means that one views the system in its context and avoid considering details within the system.  
+
 %Tier 0
 \subsection{Tier 0: The System in Its Context}
 \subsubsection{Operation}
@@ -293,12 +514,16 @@ MPSE2201 System design and engineering}
  \caption{Use case diagram for the system}
  \end{figure}
 
+Here we can see at the top level what the base use cases of our system will be for its users. They will derive the systems inputs and outputs, as well as the functions we need in our system. Doing it this way, helps us make sure that the system fills the needs of our user, as well as avoiding adding functionality that doesn’t fill a purpose. 
+
 \begin{figure}[H]
  \centering
   \includegraphics[width=\linewidth]{img/drawio/BlackBoxSystem.png}
  \caption{Black box of our system}
+\label{BlackBoxSystem}
  \end{figure}
 
+In figure \ref{BlackBoxSystem} we see the system as a black box. We found that the system will receive/gather renewable energy, needs from the user as well data from various sources. Then we identified the wanted outputs. These were all derived from our investigations into the customer, the users as well as the context of the system. This helped us explore what functions our system will need to have. 
 
 \subsubsection{Behavior}
 
@@ -308,13 +533,19 @@ MPSE2201 System design and engineering}
  \caption{\ac{FFBD} within our system}
  \end{figure}
 
+In order to provide heat and electricity in a sustainable way, we will need to harvest energy, but we will also need the option to buy power from the grid. To make the system smart, it will need to make decisions based on both data and the wishes of the user. Finally, it will need to allocate the energy in an optimal way in any given moment, that may involve using it, storing it, or even selling it.  
+
 \subsubsection{Structure}
+
+This structure of the system describes how it will be built. At this point we start with dividing it up into subsystems: 
 
 \begin{figure}[H]
  \centering
   \includegraphics[width=\linewidth]{img/drawio/ClassesSystemAbstractNew.png}
  \caption{The system modeled as a \ac{UML} class diagram, where all the classes are still abstract}
  \end{figure}
+
+There are many technologies available for us in order to make our system attain the wanted functions and behavior. The different combinations of them gives us thousands of possible concepts. These are the options we initially considered, where we have looked closer into some of them:
 
 \begin{figure}[H]
  \centering
@@ -325,34 +556,73 @@ MPSE2201 System design and engineering}
 
 
 \paragraph{Harvesting Energy}
-
 \textbf{Solar}
+
+Solar-power is growing at a tremendous rate. It is easy to implement and is getting cheaper by the day. Given the context of our system, one may think that the Nordic climate wouldn’t be favorable to this technology. However, even though we have less sun here, the cold makes the panels more economically efficient in Norway, than in for example a place like Milano\cite{SOLCELLERNORGE}.  
 
 \textbf{Hydro}
 
-\textbf{Wind}
+The earliest recorded use of hydro for harvesting energy is from the times of the Roman Empire, and is very widespread today, especially in Norway.  It is a very mature technology, can produce massive amounts of energy and the potential worldwide still is not near begin filled. However, in Norway the government owns the right to harvest energy from almost all viable locations, which makes it hard to implement for a private residence. The locations of our customer group also makes it difficult as the availability of waterfalls and rivers is even less in urban areas. 
 
 \textbf{Wind}
+
+Harvesting wind-energy is another very old approach to relieving humans of manual labor and has in modern times become a means to generate large amounts of electricity. A single windmill with a diameter of 120 meters, can generate up to 4.5 MW on average \cite{MULTICONSULT}. Because of this they been become very widespread the last 20 years, even in Norway. However, because of their size, the noise they generate and the dangers they present to the fauna, windmills have become the source of huge political controversy lately.  
+
+Our main customer group are in urban environments, and this means that windmills will be difficult to implement in an effective way. There does exist so-called urban windmills to be placed on rooftops, but the electricity they generate is most often not worth the cost.\cite{ENGINEERINGDOTCOM}.
 
 \textbf{Nuclear}
 
+Nuclear energy has a bad name, even though it produces completely clean energy. The trouble with nuclear waste storage, as well as public fear of accidents makes this option a practical impossibility. It is extremely expensive to realize, not renewable, and requires a much larger scale, than we can facilitate. 
+
 \paragraph{Storing Energy}
 \textbf{Batteries}
+
+For storing the electrical energy our system will generate, the most obvious option is lithium-ion-batteries. They are popular because of their high charge density, as well as their effectiveness. They are simple to implement but have a high cost.  
+
+Another problem with them is that they are made from non-renewable elements, and the world is running out of cheap and accessible lithium. The process of manufacturing them is also, not considered to be environment friendly. 
+
 \textbf{Vehicle-to-Building (\ac{V2B})}
+
+Vehicle-to-building is a concept where you connect a two-way charger to an electrical car. It lets us use the car-batteries to both store and fetch electricity when needed. This can reduce the needed capacity of other energy storage and may help reduce the costs of the system. In order to make use of it of course, you will need electric cars, but this does fit our customer-group very well.  
+
 \textbf{Hydrogen}
+
+Hydrogen can be used as an energy carrier for many different applications, often releasing the energy stored in the hydrogen gas in a fuel cell. Hydrogen can also be burned in an engine, but the industry has largely departed from that technology, since fuel cells convert energy much more efficiently. 
+
+The benefits of hydrogen as an energy carrier are that hydrogen per mass has an energy density that is three times as high as traditional fuels such as gasoline and diesel, and that it does not result in emissions other than water vapor when hydrogen and oxygen are converted into electricity in a fuel cell. The challenge is that hydrogen is a very voluminous gas and is therefore more demanding to handle and distribute than traditional fuel. There is an opportunity to solve this challenge by producing the hydrogen gas in the same place it is consumed. 
+
 \textbf{Water Magazine}
+
+This approach basically consists of pumping water to a magazine at a higher altitude. When you want to ‘withdraw’ the energy, you release it, and funnel it through a hydro power generator. For obvious reasons this will not be a viable approach for us, because of our scale and location.   
+
 \paragraph{Generating Heat}
 \textbf{Burning Trash}
 
+Burning trash may initially sound like a bad idea, but it is a quite widespread way of generating heat and electricity. Most notable in Viken is perhaps the plant in Fjell, Drammen. Fjell is a suburb of Drammen and consists of a large number of apartment complexes. Their heat facility provides all of them with heating exclusively from burning trash. The waste of this process is pure ash, and this is sold to businesses who use it to produce concrete and asphalt. The method is generally seen as environmental-friendly, as it mostly releases steam into the air. However, it does release several other elements into the environment like NOx, SO2, CO and mercury, though in small amounts. This may make it unsuitable for our purposes. 
+
+Another problem with this approach is that, in order to be economically viable, you will need quite a large-scale facility. In other words, it does not fit the problem we are trying to solve.
+
 \textbf{Geothermal}
+
+Geothermal energy is often separated into two categories. The first one is the concept of drilling down to the boundaries between tectonic plates and extracting the extremely high temperatures found there. If this is ever accomplished in practice, some prophesize that is will generate enough energy for the entire earth, several times over.  
+
+The concept we are looking into is ground source heating. It involves drilling holes in the ground, and putting tubes filled with brine in them. They can be anywhere from six meters, to several hundred meters deep, dependent of the area. You also need a heat pump, which will pump cold brine down, and extract the heat located in the ground. The brine that reappears in the other end, will have a constant temperature, year-round. The heat pump will then use the gain in temperature to heat water in a much more efficient way then it would otherwise be able to. The process can also be done in reverse, and in that way provide cooling in the summer. State-of-the-art heat pumps can even provide heat with an effectiveness factor of 5. This means that for every kwh of electricity you put in, you may get 5kwh of heat out. This has been a popular concept for existing apartment buildings lately, because Norwegian law banned all forms of oil and paraffin heating in all buildings from 01.01.20. 
 
 \textbf{Burning Pellets}
 
+This option is basically the same as burning trash, but instead of trash we burn pellets made of biomatter that are compressed. In contrast to burning trash, this option is much more viable in a small scale, and there are companies specializing in delivering pellets to apartment complexes today. However, we found that in urban environments they release particles into the air, which makes for a worse environment for people in its surroundings. This will probably not meet the profile of our system, nor will it make it easier to market.  
+
 \textbf{District Heating}
+
+Probably the most widespread way of heating apartment complexes in Norway today, is district heating. It provides cheap, reliable heating from external, most often local plants. They vary in their environmental factor, but most often they are considered to be environmentally friendly. 
 
 \subsubsection{Trade-Off}
 
+In this section we will have a look at the options and analyze which ones may be best suitable for our system. 
+
 \paragraph{Harvesting Energy}
+
+We looked at a few different ways of harvesting energy for our building complex. Considering that one of our effectiveness measures is to provide green energy, we could narrow our options down to Solar, Thermal-Generator, Nuclear, Wind and Hydro. When it came to finding out which one of these options would be most suitable for our system we had to look back at our measures of effectiveness and requirements. We picked out a handful of these that were most relevant to energy harvesting and set up this PUGH matrix:
 
 \begin{figure}[H]
  \centering
@@ -360,7 +630,13 @@ MPSE2201 System design and engineering}
  \caption{Pugh matrix for harvesting energy}
  \end{figure}
 
+By using this PUGH matrix, we were able to evaluate our options and we concluded that solar panels would be best suited for our system. It would not only be best suited for this specific system with the current location of medium density Oslo, but it’s also the option that would be easiest to implement at any other location. Comparing it to the nuclear option, it’s clear that solar is way more doable in terms of cost and difficulty. And if we compare it to wind and hydro, solar panels do not depend as much on the location and outside factors as these other options. By choosing solar panels we make it easier for us to distribute our system virtually anywhere. 
+
+For a large building complex with multiple floors the current generation solar panels do not provide enough energy to provide 100\% of the building consumption. But with four floors it is close enough. In Norway renewable energy from the grid is very easy to guarantee. We will simply change our goal from 100\% to 60\% self-sustainable. And get the other 40\% from a power supplier with a guarantee that is comes from a renewable source. 
+
 \paragraph{Storing Energy}
+
+Since our system is harvesting energy we need some way of storing it. There are several forms of having grid energy storage. Among them are batteries, compressed air, hydrogen and electric vehicles. Some of the important factors we had when choosing a storage method was: sustainability, we want to leave as little of a footprint as possible, the cost of it, we want it to be affordable for our customers, how safe it is and how efficient it is, we want to minimize the energy waste. From researching different methods of grid energy storage we picked three options we thought would fit our system most and compared them using this PUGH matrix:
 
 \begin{figure}[H]
  \centering
@@ -368,7 +644,11 @@ MPSE2201 System design and engineering}
  \caption{Pugh matrix for storing energy}
  \end{figure}
 
+As one can see from the PUGH Matrix, Vehicle-to-building (V2B) won with a slight edge over batteries. We decided to go for V2B, but because this option has some irregularities in that we cannot guarantee that the amount of cars we need for storage is available at any time we opted for a solution that incorporates lithium batteries as a backup. 
+
 \paragraph{Generating Heat}
+
+If we want our system to meet our effectiveness measure of minimizing energy waste, we will need a way of generating heat without the use of electricity. We looked into using Geothermal heat pumps, Waste-to-energy and pellet burning. Then we used our requirements to set up a PUGH matrix with the relevant factors we needed to evaluate the options. 
 
 \begin{figure}[H]
  \centering
@@ -376,8 +656,13 @@ MPSE2201 System design and engineering}
  \caption{Pugh matrix for generating heat}
  \end{figure}
 
+When comparing our options, we found the geothermal heat pump to be the most optimal solution. It is the only solution among our chosen options that has any synergy with our planned cooling feature, which is an important aspect to the system as a whole. There is also the safety concern in which Waste-to-energy and Pellet burning does not come well out of, since both options poses a fire hazard for our system. Space is a major concern for our system, and we do not want to spend unnecessary money on increasing our heat generation facilities. Pellet burning proved to be the subsystem that required the least amount of space, but the geothermal heat pumps other redeeming qualities weighed up for the larger size. 
 
 \paragraph{Recommendations}
+
+After analyzing our options for the power harvesting, power storing and heat generating subsystems, we decided on a solution that we would consider to be the most viable for our system. 
+
+The solution would consist of solar panels for our power harvesting. A combination of Vehicle to Building?(V2B) and lithium batteries for our power storage. Geothermal heat pump for our heat generation.  
 
 \begin{figure}[H]
  \centering
@@ -388,9 +673,16 @@ MPSE2201 System design and engineering}
 
 \subsubsection{Derived Requirements}
 
+\textcolor{red}{HER MÅ VI SETTE INN KRAV!!!!!!!1}
+
 %Tier 1
 \subsection{Tier 1: The System}
+
+At this tier we are focusing our look inwards try to look at the dynamics and structure between the subsystems in our system. 
+
 \subsubsection{Operation}
+
+These are the use cases found at the system level: 
 
 \begin{figure}[H]
  \centering
@@ -398,13 +690,23 @@ MPSE2201 System design and engineering}
  \caption{Use case diagram, between subsystems}
  \end{figure}
 
+These use cases were crucial to define the wanted behavior of the subsystems, and how they should relate to each other. 
+
+The design choices made at tier 0 will at this point function as requirements. This is a natural phenomenon in the unfolding of a system. Analyzing the behavior of the system is most easily done by looking at the abstract functions of its subsystems.
+
 \paragraph{Control System}
+
+A control system is essential in order to fulfill the requirements of the system. This is something we will have to develop ourselves, and is what will make our system smart, as well as giving us an edge on our competitors.  
+
+The black box exercise left us with these inputs and outputs: 
 
 \begin{figure}[H]
  \centering
   \includegraphics[width=\linewidth]{img/drawio/BlackBoxControlSystem2.png}
  \caption{Black box of Control System}
  \end{figure}
+
+As the control system is the main focus of our engineering efforts, this will be further elaborated in the next tier. 
 
 \paragraph{Photovoltaic System}
 
@@ -414,6 +716,8 @@ MPSE2201 System design and engineering}
  \caption{Black box of Photovoltaic System}
  \end{figure}
 
+This is the whole functionality we need from the photovoltaic system and will be bought as a complete package from our supplier. The only thing that needs designing is the software to read the signals, which we will get back to later.  
+
 \paragraph{Energy Storage system}
 
 \begin{figure}[H]
@@ -421,6 +725,8 @@ MPSE2201 System design and engineering}
   \includegraphics[width=\linewidth]{img/drawio/BlackBoxEnergyStorageSystem.png}
  \caption{Black box of Energy Storage System}
  \end{figure}
+
+As our concept takes several storage approaches in use, this will be elaborated in the next tier as the allocation of the energy harvested will be crucial for success. 
 
 \paragraph{Geothermal Heating/Cooling}
 
@@ -436,8 +742,10 @@ MPSE2201 System design and engineering}
  \caption{Black box of Geothermal Cooling System}
  \end{figure}
 
-\subsubsection{Behavior}
+The geothermal heating and cooling systems will receive a signal which tells the heat pumps to either turn on or off. The signal will come from the control system and will be based on different sensor readings throughout the buildings. 
 
+\subsubsection{Behavior}
+\textcolor{red}{HER MÅ VI SKRIVE NOE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!}
 \begin{figure}[H]
  \centering
   \includegraphics[width=\linewidth]{img/drawio/FFBDSubsystems.png}
@@ -450,7 +758,10 @@ MPSE2201 System design and engineering}
  \centering
   \includegraphics[width=\linewidth]{img/drawio/ClassesSubSystemsSimple.png}
  \caption{Class diagram showing the subsystems}
+\label{ClassesSubSystemsSimple}
  \end{figure}
+
+In figure \ref{ClassesSubSystemsSimple} we can see the structure of our system at this level of detail.  
 
 \begin{figure}[H]
  \centering
@@ -458,9 +769,18 @@ MPSE2201 System design and engineering}
  \caption{A more detailed structural model of our system and its context}
  \end{figure}
 
+\textcolor{red}{HER MÅ VI SKRIVE NOE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!}
+
+
 \subsubsection{Trade-Off}
 
 \paragraph{Control System}
+
+Our system needs to store large amounts of data and do a lot of computing. It will need continuous updates and adjustments to the machine learning algorithm. Buying a server with the capacity to store 20 years of data from day 1 is not a good economic option. We need to add vertical and horizonal scaling as the data amount and computing power need increases. 
+
+Each building complex will need a control unit in the physical building to communicate with the actual subsystems and even take some decisions in the case of internet loss. 
+
+But the main computing, data storage, and data gathering software does not need to be in the physical building complex. So we made this PUGH matrix to compare the two options. 
 
 \begin{figure}[H]
  \centering
@@ -468,22 +788,33 @@ MPSE2201 System design and engineering}
  \caption{Pugh matrix for Control System}
  \end{figure}
 
+The main disadvantage with a server in each building is the need to update an increasing number of servers with the latest version of our software. And to travel between the locations to add hardware for performance increases. But it would have 99\% of full functionality when the building complex loses contact with the internet. And the response time would be very low and not dependent on other companies/systems. 
 
 \paragraph{Recommendations}
 
+A common cloud server will be the best option for our system. It will save money and a better response time and full functionality without internet is not worth the complexity it adds. 
+
 \subsubsection{Derived Requirements}
 
+\textcolor{red}{HER MÅ VI SKRIVE NOE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!}
 
 %Tier 2
 \subsection{Tier 2: Subsystems}
 \subsubsection{Energy Storage System}
+
+The energy storage system is not the main focus of this project, however, we have decided to include a greater level of detail of it, in order to more easily dive into the specifics of the control system. 
+
 \paragraph{Behavior}
+
+Here we can see how we envision the allocation of electricity in our system. Even though most of the logic seen here actually lies with the control system, we find found it suitable to display the energy storage system with some of its context included. This is to help the reader understand which parameters the functions depend upon. 
 
 \begin{figure}[H]
  \centering
   \includegraphics[width=\linewidth]{img/EnergySystemBehaviour.png}
  \caption{Behavior of the Energy Storage System}
  \end{figure}
+
+The main thing to draw from this model is that the energy storage system will receive electricity and store it in either the static batteries placed in the building, or in the vehicles owned by the residents. It will also have to quickly allocate energy to power outlets, sell to grid or move electricity between the two storages.  
 
 \paragraph{Structure}
 
@@ -493,7 +824,11 @@ MPSE2201 System design and engineering}
  \caption{Class diagram of the Energy Storage System}
  \end{figure}
 
+The structure of the system is quite simple and will not be delved further into.  
+
 \paragraph{Derived Requirements}
+
+n order to find the best buy and sell windows for power we got this data from NordPool \cite{NORDPOOL}. And to maximize profits for our customers, we need to buy/sell as much as possible at the optimal hours.
 
 \begin{figure}[H]
  \centering
@@ -501,6 +836,12 @@ MPSE2201 System design and engineering}
  \caption{Average hourly power prices 2013-2020}
  \end{figure}
 
+Which gives us the requirements: 
+
+[Requirement 5.1.3.2] 
+
+[Requirement 5.1.3.3] 
+\textcolor{red}{HER MÅ VI SKRIVE NOE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!}
 
 \subsubsection{Control System}
 
@@ -512,36 +853,70 @@ MPSE2201 System design and engineering}
  \caption{Use case diagram within the control system}
  \end{figure}
 
+These are the use cases we identified within the control system They are very abstract, but they helped us do the functional analysis for all the subsystems in the control system. We will get back to the structure of the components later, for now we will look at their behavior. 
+
 \paragraph{Behavior}
 
 \textbf{Control Unit}
+
+The control unit is the component which will be installed in the building and will communicate with all the physical subsystems of our system as well as some systems that are not part of it.  
+
+In figure \ref{FFBDControlUnit} we can see the functions it will need to execute: 
 
 \begin{figure}[H]
  \centering
   \includegraphics[width=\linewidth]{img/drawio/FFBDControlUnit.png}
  \caption{FFBD for the Control Unit}
+\label{FFBDControlUnit}
  \end{figure}
 
+In the top of the figure we can see its main functions, and the respective functions are elaborated in the bottom. It will directly communicate with the sensors located in the buildings. This includes temperature sensors, the sensors in the physical components as well as sensing whether the residents are at home. All this data will have to be stored, so it will have to write it to the suitable database. Next, it will have to receive instructions from the MCU, and execute them. These instructions will determine the behavior of all parts of our system, as well as several others. 
+
 \textbf{\ac{MCU} (Main Communication Unit)}
+
+As mentioned in the last section, the MCU will send instructions to the control unit, and we can see the functions it will need in order to accomplish this in figure \ref{FFBDMCCU}: 
 
 \begin{figure}[H]
  \centering
   \includegraphics[width=\linewidth]{img/drawio/FFBDMCCU.png}
  \caption{FFBD for the MCU}
+\label{FFBDMCCU}
  \end{figure}
+
+The MCU will gather instructions from the database, and the update-queue. In the database we will store the scheduled and long-term instructions for the system. However, this is not very suitable for real-time changes in wanted behavior, and these instructions will have to be gathered from the update-queue. This data-structure is mainly meant for unpredictable events, such as user inputs etc. 
 
 \textbf{Databases}
 
+The basic functions we need in the databases are obvious. \ac{CRUD} is common expression in database management, and it refers to the essential functions: 
+
+\begin{itemize}
+\item{Create}
+\item{Read}
+\item{Update}
+\item{Delete}
+\end{itemize}
+
+However, the types of data we will need are quite different, so we need databases with different capabilities.  
+
 \textit{MySQL}
-\ac{SQL}
+
+Often called the most successful software ever designed and is based on the Structured Query Language (\ac{SQL}). MySQL stores its data in rows and columns and is optimal for relational databases. These are suitable for storing data that will have to be changed, as they are quite flexible. They are also easy to implement and offers strong data integrity. We will use SQL for storing user data, instructions, errors and many other things.  
+
 \textit{MongoDB}
 
+The great majority of our data, however, will be stored in a MongoDB cluster. In order to make our system smart and able to make decisions, we will need tremendous amounts of data. MongoDB, whose name refers to humongous DB, is designed for this. The main difference in MongoDB, is that data is not stored in predetermined rows and columns in a table, but rather handled as collections of documents. The documents are \ac{JSON} files which consist of key-value pairs. This means that we can store any attribute we will in every record of the table, but not every document needs the same attributes. Because of this, queries in MongoDB are much quicker than conventional SQL databases.  
 
 \textbf{Data-Gathering Software}
 
+Now that we know how we will store the data; we will get into how we will obtain the data. As mentioned previously we will have probably hundreds of sensors in the buildings. However, we also need some external data. These data can be divided into two kinds: 
+
 \textit{Historical Data}
 
+We will need hourly historical solar, weather and power price data. Solar and weather are quite easy, as there exists free API’s that provides us with accurate and extensive records. Power prices are a bit harder to acquire in the detail necessary. Nord Pool, the power exchange owned by the Nordic and Baltic countries do provide this, and for a yearly fee they allow access to rich amounts of data, so that cost will have to be factored in. This software will run only once per implementation and will therefore not be elaborated further on in this part. 
+
 \textit{Continuous Data}
+
+In addition to this we also need to continuously gather data. This includes getting weather forecasts and power prices. In figure X.X we can see how we have defined the behavior of the data-gathering software for storing continuous data: 
 
 \begin{figure}[H]
  \centering
@@ -549,7 +924,11 @@ MPSE2201 System design and engineering}
  \caption{FFBD for the continuous data gathering software}
  \end{figure}
 
+This is a quite simple model, much like the software it depicts. 
+
 \textbf{Machine Learning Software}
+
+The software for machine learning is essential in order to make our system smart and attractive and will be focused greatly on.  
 
 \begin{figure}[H]
  \centering
@@ -557,7 +936,11 @@ MPSE2201 System design and engineering}
  \caption{FFBD for the machine learning software}
  \end{figure}
 
+In the top model we see the abstract functions it will need to execute, and as we did with the Control Unit, we have also here found it necessary to unfold them. First, we will try and make predictions concerning the context of the system, how much power production we can expect and the needs and behavior of the user. In the next phase the software will have to make concrete decisions as to how the system should behave and operate. Lastly, we store these decisions as data and instructions in the databases.  
+
 \textbf{Application / Website}
+
+Even though the system will be smart, there is no such thing as perfect. That is why we will need an opportunity to override the systems decisions. This is circular of course, because in order to be smart, the system will require large amounts of data about the users and their preferences. The smart device application and website will also be a platform for communicating information and statistics to the user.  
 
 \begin{figure}[H]
  \centering
@@ -565,7 +948,11 @@ MPSE2201 System design and engineering}
  \caption{FFBD for the application/website}
  \end{figure}
 
+These are the main functions the application should offer the user.  It should let them change the wanted temperature in their apartments, display statistics, configure the V2B system, as well as requesting support online.  
+
 \textbf{Developer Tools}
+
+The Control System will need continuous monitoring, upgrading and maintenance. In order to do this effectively we have seen the need for a software which encapsulates tools for all of this. 
 
 \begin{figure}[H]
  \centering
@@ -573,8 +960,10 @@ MPSE2201 System design and engineering}
  \caption{FFBD for the developer tools}
  \end{figure}
 
-\paragraph{Structure}
+Here we see among other things that the support tickets generated by the users, will be handled here. Now we have come full circle and will have a look at these subsystems will relate to each other.
 
+\paragraph{Structure}
+\textcolor{red}{HER MÅ VI SKRIVE NOE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!}
 \begin{figure}[H]
  \centering
   \includegraphics[width=\linewidth]{img/drawio/ClassesControlSystem.png}
@@ -583,12 +972,57 @@ MPSE2201 System design and engineering}
 
 \paragraph{Derived Requirements}
 
+\textcolor{red}{HER MÅ VI SKRIVE NOE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!}
+
 %BUILD AND TEST PLAN
 \section{Build and Test Plan}
+\subsection{Verification}
+Verification plan is how we will use the data measured to verify the system matches the design requirements. “Did we build what we said we would” 
+
+To make sure that our system is ready for installation we set up this verification matrix where we set up the requirements and found test cases and methods of testing to confirm that the requirements are met. 
+
+\textcolor{red}{INSERT MAPPINGS!}
+
+\subsection{Validation}
+
+Validation plan is how we will use the data measured to validate the system matches the business requirements. “Did we build what we need” 
+
+To confirm that the system operates according to its designed purpose we will have to put it through a validation test, we will be doing prospective validation which is validation before we install the system, and retrospective validation which is validation that is done while the system is running on location 
+
+\subsubsection{Prospective Validation}
+\begin{itemize}
+\item{Is the system easy to learn? We will give the users access to user manuals and gain access to the user interface and get reports back whether learning the system is satisfactory.}
+\item{Does the system follow regulations? Invite inspectors for relevant government offices to confirm that the system is up to regulations.}
+\end{itemize}
+\subsubsection{Retrospective Validation}
+
+\begin{itemize}
+\item{Is the system regulating the apartment temperatures correctly? We will monitor the temperature provided to the apartments and verify that the temperatures matches the desire of the users.}
+\item{Is the system giving the correct information to the users? We will monitor the users input and confirm that the system fulfills those inputs.}
+\end{itemize}
 
 %VERIFICATION
 \section{Verification}
+
+In this section we have tried to test, simulate and/or calculate that the some of the key features for the system are achievable. 
+
 \subsection{Production}
+
+To find photovoltaic production numbers we first guessed with a little help from some articles.
+
+Then we sent out emails to local installers in the Oslo area and got a response containing the price and kWp effect of commonly used solar panels 
+
+\textcolor{red}{[INSERT Vegard sin epost]. }
+
+The building roof area is \begin{math}1800m^{2}\end{math} and to simulate what our photovoltaic production numbers would be we used the average solar data from 3 different satellites. This simulation calculates kWh produced using a static kWp effect solar panel. In reality this will vary based on temperature and wind speed. And Oslo has a good combination of solar radiation, wind speed and temperature.  
+
+For the angles we used the suggested optimal slope and azimuth from the website tool \cite{PVGTOOLS}. The roof panels will be mounted with a slope angle of 40\degree and an azimuth angle of 2\degree. Azimuth angle of 0\degree means it is facing directly south. 
+
+The solar panels mounted on the facade will use a slope angle of 90\degree. And for simplicity we used the azimuth angles for directly west, south and east. We did not have time to simulate which azimuth angle the entire building complex should be in for the best power production from all the walls put together. 
+
+In total the system will have \begin{math}1350m^{2}\end{math}  of solar panels spread evenly across the west, south and east facing walls. 
+
+Production will of course have great variation throughout the year. But the surplus during the summer will be larger than the deficit during winter. So we have reached the goal of 60\% renewable. 
 
 \begin{figure}[H]
  \centering
@@ -598,15 +1032,54 @@ MPSE2201 System design and engineering}
 
 \subsection{Capacity for Storage}
 
+We estimate the average electric vehicle our residents will use to have a capacity of 75kWh. And the historical day with the highest solar radiation made our system produce 1.4MWh above the maximum sell limit. To make sure it truly is the worst-case scenario we also put consumption at 0. The challenge for our system is to not throw away energy. From 6 o’clock to 17 o’clock we need ~19 electric vehicles to store all the energy. The problem is most people are at work from 9 to 15. We need ~16 electric vehicles to store all the energy between 9 and 15.  
+
+For economic reasons we can only cover ~3/8 of the total energy storage need with our static storage 
+\textcolor{red}{[INSERT skanbatt epost]. }
+
+If the system has access to 0 electric vehicles, we will have to throw away 0.7MWh. Odds of 0 consumption, 0 electric vehicles and record-breaking solar radiation are low, but it can happen. These odds are acceptable when the alternative is to almost triple our static storage, we cannot cover all the scenarios. 
+
 \begin{figure}[H]
  \centering
   \includegraphics[width=\linewidth]{img/V2BDay.png}
  \caption{FINN PÅ EN GOD CAPTION TARALD}
  \end{figure}
 
-\subsection{Prototypes / Proof-of-Concept}
+«RME jobber med en høring om plusskundeordningen for boligselskap. Høringen har som formål å legge til rette for at kunder i ett felles bygg kan utnytte tak- og veggflater til å produsere og forbruke egen strøm. Endringen legger opp til at en andel av felles overskuddsproduksjon kan komme til fratrekk fra den enkelte kundes målte forbruk. Vi har som mål å sende ut høringsdokumentet i løpet av 2020.» \cite{NVEPLUSSKUNDE}
+\textcolor{red}{DETTE MÅ VEL SKRIVES LITT OM?}
+
+\subsection{SOLIDWORKS MODELL Temperatur FINN PÅ BEDRE TITTEL}
+
+\textcolor{red}{SKRIV NOE HER!!}
+
+\subsection{SOLIDWORK Solar CElls weight FINN PÅ BEDRE TITTEL}
+
+\textcolor{red}{SKRIV NOE HER!!}
+
+\subsection{Prototypes}
 \subsubsection{Machine Learning}
+
+As we’ve mentioned several times, machine learning will be heavily relied upon for making our system function properly and making it attractive. Because of this we found it necessary to verify the feasibility of this by prototyping and testing some of the key functions the machine learning software will have to perform. 
+
+The way we handle buying and selling of power are very important in order to not waste the energy we produce. We also want to buy and sell for the best possible price. To accomplish this, we need among other things to predict our solar panel power production, as well as predicting the power prices.  
+
 \paragraph{Predicting Solar Panel Power Production}
+
+n order to predict the solar panel power production, we needed historic weather and sun data. Luckily for us the European Commission provides a free API which offers data from the Photovoltaic Geographical Information System (PVGIS). This let us specify the location and direction of our solar panels, and outputted hourly data production data from 2005-2016. We stored the in our MongoDB cluster, one table for each of the walls, according to which cardinal direction they are facing, as well as one for the solar panels on the roof.  
+
+Weather data is easily available from many different sources, we chose to use the API of the Norwegian Meteorological Institute which provides extended information about cloud density and height. This also was stored in the cluster.   
+
+Python is a very good tool for prototyping machine learning and holds several libraries for different machine learning approaches. The ones we touched on work like this: 
+
+\begin{itemize}
+\item{Import the dataset }
+\item{Divide the data into two, one training set and one test set.}
+\item{Let the algorithm find a fitting model from the training set. }
+\item{Apply the model on the test set }
+\item{Calculate deviations and error-margins.   }
+\end{itemize}
+
+Next, we analyzed the results, and evaluated whether the approach was good enough. We tried a few approaches, among them linear regression, but eventually got good results with a decision tree regressor algorithm. These are for the south wall solar panels: 
 
 \begin{figure}[H]
  \centering
@@ -614,6 +1087,11 @@ MPSE2201 System design and engineering}
  \caption{Machine learning prediction results for shuffled solar production}
  \end{figure}
 
+\[ Mean Absolute Error = 1.7 kWh \]
+    
+The blue bars in this graph shows the actual power production during an hour, the orange bars show the predicted production and the number shows the accuracy of all the predictions, not just the data displayed in the model.  
+
+This looks a bit too good to be true, and in a way it is. When dividing the data into two, one can chose to shuffle the dataset, or to do it chronologically. Of course, it is easier for the algorithm to ‘guess’ on a value between a group of others, than if it had to predict the production for an extended period without as much information from the context. The chronological way is how it will work in a proper implementation, so it's crucial that this also produces acceptably results.  These are the data we got for the panels on the south wall: 
 
 \begin{figure}[H]
  \centering
@@ -621,7 +1099,18 @@ MPSE2201 System design and engineering}
  \caption{Machine learning prediction results for chronological solar production}
  \end{figure}
 
+\[Mean Absolute Error = 2.3 kWh \]
+
+As expected, these results are much less accurate. However, we still find it viable, and these predictions will keep getting better as the data increases in size. 
+
+The source code is found in appendix X.X 
+\textcolor{red}{LEGG INN RIKTIG APPENDIXNUMMER}
+
 \paragraph{Predicting Power Prices}
+
+The price of electricity depends on supply and demand at any given moment. These two factors however are the results of a tremendous number of variables, which makes this task very difficult. 
+
+ The first thing we looked at was the historical data: 
 
 \begin{figure}[H]
  \centering
@@ -629,11 +1118,17 @@ MPSE2201 System design and engineering}
  \caption{Power prices 2013-2020 in NOK/MWh}
  \end{figure}
 
+We gathered hourly historical data and analyzed them. The fact that they wary so greatly and abruptly brings further complexity to the problem. Still we fed the data to the same algorithm we used for predicting our production and got these results for a shuffled dataset: 
+
 \begin{figure}[H]
  \centering
   \includegraphics[width=\linewidth]{img/MachineLearning/MLPowerShuffle.png}
  \caption{Machine learning prediction results for shuffled power prices}
  \end{figure}
+
+\[Mean Absolute Error = 6.9 NOK/MWh \]
+
+The results are perfect, but they are still a victim of the same symptom we saw with shuffled lists with solar power, and to an even stronger degree. Still, this did seem promising with respect to chronological testing which ended up like this: 
 
 \begin{figure}[H]
  \centering
@@ -641,7 +1136,23 @@ MPSE2201 System design and engineering}
  \caption{Machine learning prediction results for chronological power prices}
  \end{figure}
 
+\[Mean Absolute Error = 33.6 NOK/MWh \]
+
+The accuracy of the results dropped much more than what was the case with solar power, because the variables are too many, and we don’t factor in anything but the historical data. Still, we concluded with that they are better than one would expect. We are confident that if more data, and more types of data are gathered, the results will increase in quality. 
+
+The source code is found in appendix X.X. 
+\textcolor{red}{LEGG INN RIKTIG APPENDIXNUMMER}
+
 \subsubsection{Web-Application}
+
+Residents should have an easy way to adjust their temperature and change their vehicle charge settings. And be given detailed statistics over their energy consumption the last 24 hours, week, month and year. We have focused on simplicity and provide both a website which will work on all modern browsers. And we will also compile the website code into an app for both Android and iOS.  
+
+We want our customers to have options to choose between website, app or both for their devices. And having our app on the respective app stores provides us with a tiny amount of marketing. 
+
+Which means we will only have one codebase to work on and update. But we will need to depend on other software for the actual conversions. 
+
+We have made a prototype of the “change temperature in apartment” function. And if we had more time we would continue with the “change electrical vehicle charge settings” and “energy consumption statistics”. 
+
 \begin{figure}[H]
  \centering
   \includegraphics[width=\linewidth]{img/website.png}
@@ -650,13 +1161,9 @@ MPSE2201 System design and engineering}
 
 
 %RISK
-\section{Risk}
-
-\begin{figure}[H]
- \centering
-  \includegraphics[width=\linewidth]{img/risk/DevRisk.png}
- \caption{Risk matrix for development}
- \end{figure}
+\section{System Risk Analysis}
+\textcolor{red}{Dette må skrives om etter vi flyttet den andre risk matrix}
+We made a risk analysis of our system during operation and of our development of the system. It shows how likely each scenario is and how much it will affect us negatively. We also have recommended tasks to perform to either reduce the risk or the severity.  
 
 \begin{figure}[H]
  \centering
@@ -664,10 +1171,35 @@ MPSE2201 System design and engineering}
  \caption{Risk matrix for system operation}
  \end{figure}
 
+We perform risk analysis during system operation so one of these scenarios do not cause physical, emotional, psychological or social damage to our customer. 
+
 
 %ECONOMICS
 \section{Economics}
+
+Our business plan consists of selling our subsystems geothermal heat pump, vehicle-to-building, solar panels and lithium batteries as a one-time sale. And to provide a smart energy management service. 
+
+The subsystems we sell as a box are not crucial and are interchangeable if they match our subsystem requirements 
+
+The smart energy management service we provide has one physical mainframe in each building complex, temperature sensors inside and outside, and a proximity sensor in every apartment.  
+
+The mainframe and sensors provide essential data to our machine learning software, this data needs to be stored continually. And the machine learning software needs fine tuning and adjustments. Selling this as a service means less risk for us and the customer. Easier for us to maintain software with annual income, and the customer is guaranteed up to date software. 
+
 \subsection{Our Budget}
+
+We made a budget to estimate our expenses and income. Unit sales will have a one-time expense/income while service will have annual expense/income. We will pay our engineers 1MNOK in the start and expect other expenses to be 100k annually. 
+
+For the most crucial and expensive sub-systems we tried to reach out to suppliers in the Oslo area and get a price from them. And some of them did generously respond to our queries. But for other sub-systems and atomic parts we simply guessed. 
+
+\textcolor{red}{[INSERT nibe epost] }
+
+\textcolor{red}{[INSERT skanbatt epost]}
+
+\textcolor{red}{[INSERT smartly epost]}
+
+The unit will us cost 7.7MNOK and the annual service will cost us 20k. 
+
+The unit will cost the customer 10MNOK and the annual service 50k. 
 
 \begin{figure}[H]
  \centering
@@ -675,7 +1207,7 @@ MPSE2201 System design and engineering}
  \caption{Budget for our company}
  \end{figure}
 
-
+We expect to make a profit after 2 years. And be dept free from the 6 MNOK we loaned from investors after 3.5 years. 
 
 \subsection{Our Cash Flow}
 
@@ -693,7 +1225,17 @@ MPSE2201 System design and engineering}
  \caption{Budget for customer}
  \end{figure}
 
+Our system costs 10 MNOK, but the customer also needs to dig wells for the geothermal heat pumps. Which we estimate will cost 3 MNOK, putting the total at 13 MNOK. 
+
 \subsection{Residents Cash Flow}
+
+Subsystem replacement schedule: 
+\begin{itemize}
+\item{Geothermal heat pump: 5 years }
+\item{Lithium batteries: 10 years }
+\item{Solar panels: 20 years }
+\item{Vehicle-to-building: 20 years }
+\end{itemize}
 
 \begin{figure}[H]
  \centering
@@ -701,10 +1243,12 @@ MPSE2201 System design and engineering}
  \caption{Cash flow graph for customer}
  \end{figure}
 
+ur remote heating cost estimation is very generous. And the residents will still end up saving money with our system after ~13 years. We suspect remote heating is more expensive in reality. 
 
 %CONCLUSION
 \section{Conclusion}
 
+\textcolor{red} {LIM INN KONKLUSJON}
 
 \newpage
 %Referanse
