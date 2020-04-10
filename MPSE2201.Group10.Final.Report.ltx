@@ -313,13 +313,11 @@ We used GitHub to maintain the codebase for all our programs. It helps multiple 
 
 \textbf{MySQL}
 
-For relational databases, described in detail at page XX 
-\textcolor{red}{HUSK REFERERE TIL SIDE!}
+For relational databases, described in detail at page \pageref{MYSQLREF}
 
 \textbf{MongoDB}
 
-MongoDB is a widely used NoSQL implementation suitable for big data. This helped us prototype our machine learning, and is described in detail on page  X. 
-\textcolor{red}{HUSK REFERERE TIL SIDE!}
+MongoDB is a widely used NoSQL implementation suitable for big data. This helped us prototype our machine learning, and is described in detail on page  \pageref{MONGODBREF}
 \begin{figure}[H]
  \centering
   \includegraphics[width=\linewidth]{img/programs/mongoScreen.png}
@@ -948,11 +946,11 @@ The basic functions we need in the databases are obvious. \ac{CRUD} is common ex
 However, the types of data we will need are quite different, so we need databases with different capabilities.  
 
 \textit{MySQL}
-
+\label{MYSQLREF}
 Often called the most successful software ever designed and is based on the Structured Query Language (\ac{SQL}). MySQL stores its data in rows and columns and is optimal for relational databases. These are suitable for storing data that will have to be changed, as they are quite flexible. They are also easy to implement and offers strong data integrity. We will use SQL for storing user data, instructions, errors and many other things.  
 
 \textit{MongoDB}
-
+\label{MONGODBREF}
 The great majority of our data, however, will be stored in a MongoDB cluster. In order to make our system smart and able to make decisions, we will need tremendous amounts of data. MongoDB, whose name refers to humongous DB, is designed for this. The main difference in MongoDB, is that data is not stored in predetermined rows and columns in a table, but rather handled as collections of documents. The documents are \ac{JSON} files which consist of key-value pairs. This means that we can store any attribute we will in every record of the table, but not every document needs the same attributes. Because of this, queries in MongoDB are much quicker than conventional SQL databases.  
 
 \textbf{Data-Gathering Software}
@@ -1340,14 +1338,6 @@ The energy consumption of the building is a crucial starting point. The entire s
 \newpage
 %APPENDICES
 \section{Appendices}
-
-\textcolor{red}{Denne skal vel fjernes?}
-\subsection{Figures}
-\begin{figure}[H]
- \centering
-  \includegraphics[width=200pt]{img/ConceptMatrixChosen.png}
- \caption{Use Case Diagram Example}
- \end{figure}
 
 \subsection{Emails}
 
