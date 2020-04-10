@@ -133,7 +133,7 @@ MPSE2201 System design and engineering}
 \newpage
 \section{Abstract}
 
-Final project report in Systems Design and Engineering. The report explains how we would design a system to make large apartment complexes reach a zero-emission goal and how we would employ a system engineering approach to develop the product. 
+Final project report in Systems Design and Engineering. The report explains how we would design a system to make large apartment complexes reach a zero-emission goal and how to employ a system engineering approach to develop the product. 
 
 \newpage
 
@@ -222,6 +222,7 @@ The risk analysis matrix shows how likely each scenario is and how much it will 
  \caption{Risk matrix for development}
  \end{figure}
 
+\newpage
 \subsection{Tools}
 
 \textbf{Jira}
@@ -234,6 +235,7 @@ The risk analysis matrix shows how likely each scenario is and how much it will 
 
 Jira is a site/tool used for all types of group work. Originally a software meant to track bugs and issues, reformatted for common use. It has several functions leaning towards iteration and managing projects, through workflows, tracking of issues, progress reports, logging, scrum boards, backlogs, and more, all in all making a good fit for use in our systems engineering project. 
 
+\newpage
 \textbf{Microsoft Teams}
 
 \begin{figure}[H]
@@ -269,6 +271,7 @@ Excel is a commonly used spreadsheet tool with a wide variety of uses.
 
 Another tool used to visualize our project, for example mind-mapping, concept design, flowcharts, in addition to logo development for our group. 
 
+\newpage
 \textbf{Gantt}
 
 \begin{figure}[H]
@@ -301,6 +304,7 @@ We have used programming for our machine learning prototype, the website prototy
 
 We used a mix of Python, C++, Java and PHP. 
 
+\newpage
 \textbf{Github}
 
 \begin{figure}[H]
@@ -315,6 +319,7 @@ We used GitHub to maintain the codebase for all our programs. It helps multiple 
 
 For relational databases, described in detail at page \pageref{MYSQLREF}
 
+\newpage
 \textbf{MongoDB}
 
 MongoDB is a widely used NoSQL implementation suitable for big data. This helped us prototype our machine learning, and is described in detail on page  \pageref{MONGODBREF}
@@ -335,10 +340,18 @@ Much like what can be referred to as trade-off, our group had many internal disc
 
 
 %THE PROBLEM
+\newpage
 \section{The Problem}
 \subsection{Understanding the Problem}
 
-In order to find a solution, we need to properly understand the problem, to do this we made the scope smaller. By placing our building in Oslo and making it an apartment complex we made the problem more manageable, now we had a specific place and conditions to produce a solution for.
+In order to find a solution, we need to properly understand the problem, to do this we made the scope smaller. By placing our building in specific location and making it an apartment complex we made the problem more manageable, now we have set conditions to produce a solution for.
+\begin{itemize}
+\item{Location: Oslo}
+\item{Number of separate buildings: 4}
+\item{Floors per building: 4}
+\item{Apartements per floor: 4}
+\item{Squaremeter per apartement: 100}
+\end{itemize}
 
 
 \begin{figure}[H]
@@ -387,6 +400,8 @@ We also made a 3D model of the building to better show our stakeholders how it w
   \includegraphics[width=\linewidth]{img/3d.png}
  \caption{A 3D model of the building}
  \end{figure}
+
+\textcolor{red}{LINK TIL VIDEO}
 
 We then spent some time finding out all the man-made systems which will interact with our system. We found problems which might ordinarily only be discovered near the end of development or even after the system is finished and placed in the real world. 
 
@@ -465,7 +480,6 @@ This is the Mecca of requirements. The holy grail. Finding these are crucial to 
 As they were, these user requirements were still important to our system, but not practicable to implement into the system itself, which we needed to do. 
 
 \subsection{Analysis of Competition}
-\textcolor{red}{HØRER DENNE HJEMME HER?}
 
 After finding some main guidelines, we chose to research our competitors, both immediate (other groups with the project) and real (established companies), to compare and assess the reality of the situation. The research gave us clear trends, opportunities and problems, that are both outside of our system, in addition to potential problems our system could have. 
 
@@ -481,15 +495,12 @@ European Railway Standard: “In railway engineering, as in most forms of transp
 
 
 \subsection{Effectiveness Measures}
-\textcolor{red}{DENNE DELEN BØR SEES OVER}
 
 Our group had a proper discussion regarding what the difference of user requirements and effectiveness measures were, differing between chosen user requirements that by themselves, as they are “make-or-break” the system, and a reformulation of the user requirements more suitable to use for finding the next level of requirements more practicable for the system. No matter the difference, we made the decision to trust in what teacher Gerrit implied, from which we understood it, and find the most important user requirements that “make-or-break” the system so they could be our effectiveness measures. 
 
-\textcolor{red}{REF EFFECTIVENESS MEASURES}
+\textcolor{red}{INSERT EFFECTIVENESS MEASURES}
 
-In addition to our systems effectiveness measures, we also focused on what the effectiveness measures for our important technology would be, like the V2B, which we used for, among other things, a behavioral model for the V2B, which we will get back to later. 
-
-We again used these effectiveness measures to find the more practicable requirements for our system. We used a method called key driver diagram. 
+We used these effectiveness measures to find the more practicable requirements for our system. We used a method called key driver graph. 
 
 \begin{figure}[H]
  \centering
@@ -503,6 +514,7 @@ We again used these effectiveness measures to find the more practicable requirem
  \caption{Key-driver-graph for the users of our system}
  \end{figure}
 
+\textcolor{red}{OPPDATERE KEY DRIVER GRAPHS}
 In this diagram the main goal is to find quantifiable numbers to use in our system equations which we can cross check and implement later. 
 
 From this diagram we found for example the mean time to failure (MTTF) of our system should be XXX, which changes the system in a mechanical way, perhaps changing the price range, in addition to ensuring a longer lifetime of said part. It is important to pay attention to the make-or-break requirements in this way as they yield some of the highest gains one could get. 
@@ -522,7 +534,7 @@ Now, one can divide these system requirements into several sub-categories;
 
 Our focus was to find Key performance parameters (KPPs), as they were referred to as. In reality, these parameters are a mix of the other types of requirements molded and mixed together. 
 
-\textcolor{red}{REF REQUIREMENTS DOCUMENT}
+\textcolor{red}{REF REQUIREMENTS TIER 0}
 
 \subsection{Energy Consumption}
 
@@ -720,7 +732,7 @@ The solution would consist of solar panels for our power harvesting. A combinati
 
 \subsubsection{Derived Requirements}
 
-\textcolor{red}{HER MÅ VI SETTE INN KRAV!!!!!!!1}
+\textcolor{red}{REF tier 1 requirements}
 
 %Tier 1
 \subsection{Tier 1: The System}
@@ -810,6 +822,7 @@ The geothermal heating and cooling systems will receive a signal which tells the
 
 In figure \ref{ClassesSubSystemsSimple} we can see the structure of our system at this level of detail.  
 
+
 \begin{figure}[H]
  \centering
   \includegraphics[width=\linewidth]{img/SystemDesign.png}
@@ -843,7 +856,7 @@ A common cloud server will be the best option for our system. It will save money
 
 \subsubsection{Derived Requirements}
 
-\textcolor{red}{HER MÅ VI SKRIVE NOE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!}
+\textcolor{red}{REF TIER 2 requirement}
 
 %Tier 2
 \subsection{Tier 2: Subsystems}
@@ -1028,7 +1041,7 @@ Verification plan is how we will use the data measured to verify the system matc
 
 To make sure that our system is ready for installation we set up this verification matrix where we set up the requirements and found test cases and methods of testing to confirm that the requirements are met. 
 
-\textcolor{red}{INSERT MAPPINGS!}
+\textcolor{red}{INSERT IMPORTANT MAPPINGS!}
 
 \subsection{Validation}
 
@@ -1059,7 +1072,7 @@ To find photovoltaic production numbers we first guessed with a little help from
 
 Then we sent out emails to local installers in the Oslo area and got a response containing the price and kWp effect of commonly used solar panels.
 
-\nameref{emailSmartly}\\
+See the attached email at page \pageref{emailSmartly}\\
 
 The building roof area is \begin{math}1800m^{2}\end{math} and to simulate what our photovoltaic production numbers would be we used the average solar data from 3 different satellites. This simulation calculates kWh produced using a static kWp effect solar panel. In reality this will vary based on temperature and wind speed. And Oslo has a good combination of solar radiation, wind speed and temperature.  
 
@@ -1083,7 +1096,7 @@ We estimate the average electric vehicle our residents will use to have a capaci
 
 For economic reasons we can only cover $\sim$3/8 of the total energy storage need with our static storage.
 
-\nameref{emailSkanbatt}\\
+See the attached email at page \pageref{emailSkanbatt}\\
 
 If the system has access to 0 electric vehicles, we will have to throw away 0.7MWh. Odds of 0 consumption, 0 electric vehicles and record-breaking solar radiation are low, but it can happen. These odds are acceptable when the alternative is to almost triple our static storage, we cannot cover all the scenarios. 
 
@@ -1206,6 +1219,7 @@ We have made a prototype of the “change temperature in apartment” function. 
  \caption{Screenshots of the website prototype}
  \end{figure}
 
+\textcolor{red}{LINK TIL VIDEO}
 
 %RISK
 \section{System Risk Analysis}
@@ -1240,10 +1254,7 @@ We made a budget to estimate our expenses and income. Unit sales will have a one
 
 For the most crucial and expensive sub-systems we tried to reach out to suppliers in the Oslo area and get a price from them. And some of them did generously respond to our queries. But for other sub-systems and atomic parts we simply guessed. 
 
-
-\nameref{emailNibe}\\
-\nameref{emailSkanbatt}\\
-\nameref{emailSmartly}\\
+See the attached emails at pages: \pageref{emailNibe}, \pageref{emailSkanbatt}, \pageref{emailSmartly}
 
 The unit will us cost 7.7MNOK and the annual service will cost us 20k. 
 
@@ -1296,8 +1307,6 @@ ur remote heating cost estimation is very generous. And the residents will still
 %CONCLUSION
 \section{Conclusion}
 
-\textcolor{red}{ER DENNE GREI?}
-
 \subsection{About our system}
 Even though our system does not make a large multi-floor building 100\% self-sustainable, it is still a huge help. It puts unused roof area to use, provides efficient heating and smart energy storage. Due to the urban environment we aimed our system at, it narrowed the opportunities for energy harvesting.
 
@@ -1321,7 +1330,7 @@ One of the problems we see with large buildings having their own power productio
 \end{itemize}
 \subsection{What could be improved}
 
-\textcolor{red}{Usikker om vi kan si dette, var kanskje bare en del av kaos med system engineering, ikke noe vi kunne ha gjort bedre}It was difficult to scope the problem, and we should have put more focus on this earlier. in order to ...
+It was difficult to scope the problem, and we should have put more focus on this earlier. This would have prevented us from spending time designing a building.
 
 The focus of this assignment was to learn system engineering, and we were told not to focus too much on numbers. But poor research can lead to a poor product solution. The system is only as good as its worst sub-system.
 
@@ -1337,14 +1346,15 @@ The energy consumption of the building is a crucial starting point. The entire s
 
 \newpage
 %APPENDICES
+
+
+\includepdf[scale=0.5,pages=-,pagecommand=
 \section{Appendices}
-
 \subsection{Emails}
+\subsubsection{Geothermal heat pump supplier email\label{emailNibe}}]{pdf/NIBE.pdf}
 
-\includepdf[scale=0.8,pages=-,pagecommand=\subsubsection{Geothermal heat pump supplier email\label{emailNibe}}]{pdf/NIBE.pdf}
 
-
-\includepdf[scale=0.8,pages=-,pagecommand=\subsubsection{Lithium battery supplier email\label{emailSkanbatt}}]{pdf/Skanbatt.pdf}
+\includepdf[scale=0.7,pages=-,pagecommand=\subsubsection{Lithium battery supplier email\label{emailSkanbatt}}]{pdf/Skanbatt.pdf}
 
 
 \includepdf[scale=0.7,pages=-,pagecommand=\subsubsection{Solar panel supplier email\label{emailSmartly}}]{pdf/Smartly.pdf}
