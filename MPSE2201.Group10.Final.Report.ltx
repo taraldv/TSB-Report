@@ -73,6 +73,7 @@
 
 
 
+
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
@@ -197,6 +198,8 @@ After the initial exploration we had a frame for further exploration. The main g
 
 There were also several explorations into technologies and options that led to a dead-end, but it was still valuable to dive into them in order to make sure that we found the most viable concept available to us.  
 
+In addition to the material offered by the lecturers we have also relied heavily on two of the books\cite{OLIVER}\cite{STEVENS} recommended by the teacher when learning about and applying the methods of systems engineering.
+
 %PLANNING
 \section{Planning}
 \subsection{Contract of Operations}
@@ -265,7 +268,7 @@ Excel is a commonly used spreadsheet tool with a wide variety of uses.
 
 \textbf{LaTeX}
 
-\textcolor{red}{HUSK Å SKRIVE NOE OM LATEX}
+Latex is a document typesetting and formatting tool and is widely used in academia. In our project it was used for this report. 
 
 \textbf{Adobe Illustrator}
 
@@ -560,8 +563,11 @@ For elevators we used a popular calculator online and used the most energy effic
 
 %CORE TECHNICAL PROCESS
 \section{System Architecting}
-\textcolor{red}{DENNE MÅ SKRIVES OM KENT!}
 We will now look at the architecture of the system. This is a process which takes place on many levels or tiers. At tier 0, we will look at the system in the highest level of abstraction. This means that one views the system in its context and avoid considering details within the system.  
+
+Later, in tier 1, we will look at the subsystems, how they relate to each other and the dynamics between them. 
+
+Finally, in tier 2 we look at the subsystems and components within the subsystems which we have considered critical, and therefore focused especially on. 
 
 %Tier 0
 \subsection{Tier 0: The System in Its Context}
@@ -1163,8 +1169,8 @@ This looks a bit too good to be true, and in a way it is. When dividing the data
 
 As expected, these results are much less accurate. However, we still find it viable, and these predictions will keep getting better as the data increases in size. 
 
-The source code is found in appendix X.X 
-\textcolor{red}{LEGG INN RIKTIG APPENDIXNUMMER}
+The source code is found on page \pageref{MLSOLARPOWER}
+
 
 \paragraph{Predicting Power Prices}
 
@@ -1200,8 +1206,7 @@ The results are perfect, but they are still a victim of the same symptom we saw 
 
 The accuracy of the results dropped much more than what was the case with solar power, because the variables are too many, and we don’t factor in anything but the historical data. Still, we concluded with that they are better than one would expect. We are confident that if more data, and more types of data are gathered, the results will increase in quality. 
 
-The source code is found in appendix X.X. 
-\textcolor{red}{LEGG INN RIKTIG APPENDIXNUMMER}
+The source code is found on page \pageref{MLPOWERPRICE}
 
 \subsubsection{Web-Application}
 
@@ -1730,6 +1735,7 @@ main()
 
 \subsubsection{Machine Learning}
 \paragraph{Solar Power Production}
+\label{MLSOLARPOWER}
 \begin {lstlisting}
 import pandas as pd  
 import numpy as np  
@@ -1833,7 +1839,8 @@ def betterPredictWithWeather(dataset):
 
 main()
 \end{lstlisting}
-\subsubsection{Machine Learning, Power Price Prediction}
+\paragraph{Machine Learning, Power Price Prediction}
+\label{MLPOWERPRICE}
 \begin{lstlisting}
 import pandas as pd  
 import numpy as np  
