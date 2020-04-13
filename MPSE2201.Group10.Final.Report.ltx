@@ -749,8 +749,23 @@ The solution would consist of solar panels for our power harvesting. A combinati
 
 \subsubsection{Derived Requirements}
 
+In order to find the best buy and sell windows for power we got this data from NordPool \cite{NORDPOOL}. And to maximize profits for our customers, we need to buy/sell as much as possible at the optimal hours.
+
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/MachineLearning/HourlyPowerPrices.png}
+ \caption{Average hourly power prices 2013-2020 (Source code on page \pageref{HistoricalHourlyPowerPrice})}
+
+ \end{figure}
+
+Which gives us the requirements: 
+
+[Requirement 5.1.3.2] 
+
+[Requirement 5.1.3.3] 
+
 \textcolor{red}{Tør vi bruke ordet design her?}
-At page \pageref{RequirementTier1} we can see all the tier 1 requirements which we derived from this tier. We will use these to help us design the next tier.
+At page \pageref{RequirementTier1} we can see the rest of the tier 1 requirements which we derived from this tier. We will use these to help us design the next tier.
 
 %Tier 1
 \subsection{Tier 1: The System}
@@ -877,23 +892,7 @@ A common cloud server will be the best option for our system. It will save money
 
 \subsubsection{Derived Requirements}
 
-In order to find the best buy and sell windows for power we got this data from NordPool \cite{NORDPOOL}. And to maximize profits for our customers, we need to buy/sell as much as possible at the optimal hours.
-
-\begin{figure}[H]
- \centering
-  \includegraphics[width=\linewidth]{img/MachineLearning/HourlyPowerPrices.png}
- \caption{Average hourly power prices 2013-2020 (Source code on page \pageref{HistoricalHourlyPowerPrice})}
-
- \end{figure}
-
-Which gives us the requirements: 
-
-[Requirement 5.1.3.2] 
-
-[Requirement 5.1.3.3] 
-
-\textcolor{red}{Er denne grei?}
-At page \pageref{RequirementTier2} we can see the rest of the tier 2 requirements which we derived from this tier. We will use these to help us design the next tier.
+At page \pageref{RequirementTier2} we can see the tier 2 requirements which we derived from this tier. We will use these to help us design the next tier.
 
 %Tier 2
 \subsection{Tier 2: Subsystems}
