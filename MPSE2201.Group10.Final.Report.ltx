@@ -523,12 +523,13 @@ European Railway Standard: “In railway engineering, as in most forms of transp
 
 Our group had a proper discussion regarding what the difference of user requirements and effectiveness measures were, differing between chosen user requirements that by themselves, as they are “make-or-break” the system, and a reformulation of the user requirements more suitable to use for finding the next level of requirements more practicable for the system. No matter the difference, we made the decision to trust in what teacher Gerrit implied, from which we understood it, and find the most important user requirements that “make-or-break” the system so they could be our effectiveness measures. 
 
-At page \pageref{RequirementDocument} we can see our requirement document.
-
-\textcolor{red}{INSERT Screenshot av effectiveness measures}
+\begin{figure}[H]
+ \centering
+  \includegraphics[width=\linewidth]{img/effectivenessMeasures.png}
+ \caption{Our effectiveness measures from the requirement document}
+ \end{figure}
 
 We used these effectiveness measures to find the more practicable requirements for our system. We used a method called key driver graph. 
-
 
 \begin{figure}[H]
  \centering
@@ -550,16 +551,18 @@ From this diagram we found for example the mean time to failure (MTTF) of our sy
 \ac{MTTF}
 
 
-There are many ways to divide and categorize system requirements, each with different benefits. We separated ours into these: 
+There are many ways to divide and categorize system requirements, each with different benefits. We separated ours into these because of the recommendation from the book \cite{OLIVER}, which we liked: 
 \begin{itemize}
 \item{\textbf{Functional} - Contains requirements for input and output. For example solar panels convert sunlight to DC electricity}
 \item{\textbf{Temporal Performance} - Performance requirements wich contain a time component. For example MTTF of the system}
-\item{\textbf{Non-Temporal Performance Requirements} - All the other performance requirements. For example \ac{Wp} of solar panels}
+\item{\textbf{Non-Temporal Performance Requirements} - All the other performance requirements. For example }
 \item{\textbf{Interface Requirements} - Requirements which specify a physical interface between systems. For example Cat5e ethernet}
 \item{\textbf{Design Requirements} - Requirements connected to the system design. For example how much the parts in the system costs to purchase}
 \end{itemize}
 
 We made a word document to contain our requirements, and continually added and updated it as we progressed through the assignment. We chose to categorize them by tiers.
+
+At page \pageref{RequirementDocument} we can see our requirement document.
 
 It was really beneficial to have a collection of requirements. It meant everyone could quickly and easily check they were working on a solution which would fit the problem.
 
@@ -1107,7 +1110,7 @@ In this section we have tried to test, simulate and/or calculate that the some o
 
 To find photovoltaic production numbers we first guessed with a little help from some articles.
 
-Then we sent out emails to local installers in the Oslo area and got a response containing the price and kWp effect of commonly used solar panels.
+Then we sent out emails to local installers in the Oslo area and got a response containing the price and k\ac{Wp} effect of commonly used solar panels.
 
 See the attached email at page \pageref{emailSmartly}\\
 
