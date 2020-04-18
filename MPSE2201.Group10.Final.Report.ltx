@@ -107,6 +107,11 @@
   long  =  Reliability Availability Maintainability Safety,
   class = abbrev
 }
+\DeclareAcronym{PIM}{
+  short = PIM ,
+  long  =  Probability and Impact Matrix,
+  class = abbrev
+}
 
 
 
@@ -158,6 +163,42 @@ MPSE2201 System design and engineering}
 
 
 
+
+
+% we use this for our refernces as well
+\AtBeginDocument{\renewcommand{\ref}[1]{\mbox{\autoref{#1}}}}
+
+% redefinition of \equation for convenience
+\let\oldequation = \equation
+\let\endoldequation = \endequation
+\AtBeginDocument{\let\oldlabel = \label}% \AtBeginDocument because hyperref redefines \label
+\newcommand{\mynewlabel}[1]{\myequations{#1}\oldlabel{#1}}
+\renewenvironment{equation}{%
+\oldequation
+\let\label\mynewlabel
+}{\endoldequation}
+
+% try to make a List of Equations,
+% error is most likely in the @currentlabelname above
+\usepackage{tocloft}
+\newlistof{myequations}{equ}{\Large{List of Equations}}
+%\listequationsname}
+\newcommand{\myequations}[1]{%
+\addcontentsline{equ}{myequations}{\protect\numberline{\theequation}#1}}
+\setlength{\cftmyequationsnumwidth}{3em}
+
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{document}
 
 \pagenumbering{roman}
@@ -182,6 +223,11 @@ Final project report in Systems Design and Engineering. The report explains how 
 \phantomsection
 \addcontentsline{toc}{section}{\listfigurename}
 \listoffigures
+
+\newpage
+
+\addcontentsline{toc}{section}{List of Equations}
+\listofmyequations
 
 \newpage
 \phantomsection
@@ -260,7 +306,7 @@ The risk analysis matrix shows how likely each scenario is and how much it will 
 \begin{figure}[H]
  \centering
   \includegraphics[width=\linewidth]{img/risk/DevRisk.png}
- \caption{Risk matrix for development}
+ \caption{\ac{PIM} for development}
  \end{figure}
 
 \newpage
@@ -1172,24 +1218,45 @@ If the system has access to 0 electric vehicles, we will have to throw away 0.7M
  \end{figure}
 
 Hopefully in the future Norway manages to update some current laws to make it easier for large apartement complex to have their own energy production, without any need for energy storage. If we could ”store” the energy by sending it to the external grid where someone else in Norway could use the power instead. And have the same amount removed from our power bill. It would be a much more economical and enviromental way to store energy compared to lithium batteries \cite{NVEPLUSSKUNDE}.
-
+\newpage
 \subsection{Thermal Calculations/Simulation}
 
-To validate some of our calculations and gather whether our data for the technical budget in regard to watt used for heating are in any way realistic, we took some simple calculations and compared them. \\
+To validate some of our calculations and gather whether our data for the technical budget in regard to watt used for heating are in any way realistic, we took some simple calculations and compared them. \\ \\
 North American method (non-neutral home simplification):\\
 %$$S=\sqrt{\frac{1}{n-1}\sum{(X_i-\overline{X})^2}}$$
 %$$Area\times height\times1.25$$
 %$$1024ft^2\times10ft\times\frac{1.25Wh}{ft^3}=12800Wh=12.8kWh$$
-$$Area\times height\times1.25=>1024ft^2\times10ft\times\frac{1.25Wh}{ft^3}=12800Wh=12.8kWh$$
+\begin{equation}\label{North American Method}
+Area\times height\times1.25 \rightarrow 1024ft^2\times10ft\times\frac{1.25Wh}{ft^3}=12800Wh=12.8kWh
+\end{equation}
 
-By using the formula from our source (NS3700):
-$$15+5.4\times\frac{(250-100)}{100}=>\frac{\frac{23.1kWh}{m^{2}}}{year}$$
+
+By using the formula from our source (NS3700)\cite{NS3700}:
+\begin{equation}\label{Formula from NS3700}
+15+5.4\times\frac{(250-100)}{100} \rightarrow \frac{\frac{23.1kWh}{m^{2}}}{year}
+\end{equation}
+
 Thermodynamic formula:
-$$Q=\frac{KA(Thot-Tcold)}{d}=>\frac{0.2W}{mK}\times30m^2\times\frac{24C-(-10C)}{1m}=204Wh$$
-$$0.2kWh\times24\times365=\frac{1752kWh}{year}=\frac{\frac{17.52kWh}{m^2}}{year}$$
-But this is for the cold days.\\
-When the inside temperature is equal to outside temperature, no heating will be required. Therefore, for simplification, we halve the number, and get \begin{math}\frac{\frac{8.76kWh}{m^{2}}}{year}\end{math}.\\
-Our earlier estimate, which was \begin{math}\frac{\frac{15kWh}{m^{2}}}{year}\end{math} was based on the requirement for a passive home larger than \begin{math}250m^{2}\end{math}. Using their formula, the requirement for our passive home based on its size and location is \begin{math}\frac{\frac{23.1kWh}{m^{2}}}{year}\end{math}
+\begin{equation}\label{Thermodynamic formula}
+\begin{aligned}
+Q = \frac{KA(Thot-Tcold)}{d} \rightarrow \frac{0.2W}{mK}\times30m^2\times\frac{24C-(-10C)}{1m}&=204Wh \\ \\
+\rightarrow0.2kWh\times24\times365=\frac{1752kWh}{year}&=\frac{\frac{17.52kWh}{m^2}}{year}
+\end{aligned}
+\end{equation}
+
+But this is for the cold days.\\ \\
+When the inside temperature is equal to outside temperature, no heating will be required. Therefore, for simplification, we halve the number, and get 
+\begin{equation}
+\frac{\frac{8.76kWh}{m^{2}}}{year}.
+\end{equation}\\
+Our earlier estimate, which was 
+\begin{equation}
+\frac{\frac{15kWh}{m^{2}}}{year}
+\end{equation} was based on the requirement for a passive home larger than \begin{math}250m^{2}.\end{math}\\ \\
+Using their formula, the requirement for our passive home based on its size and location is 
+\begin{equation}
+\frac{\frac{23.1kWh}{m^{2}}}{year}.
+\end{equation}
 
 \begin{figure}[H]
  \centering
@@ -1359,7 +1426,7 @@ The risk analysis matrix shows how likely each scenario is and how much it will 
 \begin{figure}[H]
  \centering
   \includegraphics[width=\linewidth]{img/risk/OpRisk.png}
- \caption{Risk matrix for system operation}
+ \caption{\ac{PIM} for system operation}
  \end{figure}
 
 
