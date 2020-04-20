@@ -122,6 +122,11 @@
   long  =   Built-up area,
   class = abbrev
 }
+\DeclareAcronym{PHP}{
+  short = PHP ,
+  long  =   Hypertext Preprocessor,
+  class = abbrev
+}
 
 
 
@@ -399,7 +404,7 @@ Different languages have different advantages, but mainly it is up to the develo
 
 We have used programming for our machine learning prototype, the website prototype, parse data, communicate with API’s, and download data. 
 
-We used a mix of Python, C++, Java and PHP. 
+We used a mix of Python, C++, Java and \ac{PHP}. 
 
 \newpage
 \textbf{Github}
@@ -1352,7 +1357,11 @@ Next, we analyzed the results, and evaluated whether the approach was good enoug
  \caption{Machine learning prediction results for shuffled solar production}
  \end{figure}
 
-\[ Mean Absolute Error = 1.7 kWh \]
+\begin{equation}\label{Shuffled solar panel production results}
+Mean Absolute Error = 1.7 kWh
+\end{equation}
+
+%\[Mean Absolute Error = 1.7 kWh \]
     
 The blue bars in this graph shows the actual power production during an hour, the orange bars show the predicted production and the number shows the accuracy of all the predictions, not just the data displayed in the model.  
 
@@ -1364,7 +1373,11 @@ This looks a bit too good to be true, and in a way it is. When dividing the data
  \caption{Machine learning prediction results for chronological solar production}
  \end{figure}
 
-\[Mean Absolute Error = 2.3 kWh \]
+\begin{equation}\label{Chronological solar panel production results}
+Mean Absolute Error = 2.3 kWh
+\end{equation}
+
+%\[Mean Absolute Error = 2.3 kWh \]
 
 As expected, these results are much less accurate. However, we still find it viable, and these predictions will keep getting better as the data increases in size. 
 
@@ -1391,7 +1404,11 @@ We gathered hourly historical data and analyzed them. The fact that they wary so
  \caption{Machine learning prediction results for shuffled power prices}
  \end{figure}
 
-\[Mean Absolute Error = 6.9 NOK/MWh \]
+\begin{equation}\label{Shuffled power price results}
+Mean Absolute Error = 6.9 NOK/MWh
+\end{equation}
+
+%\[Mean Absolute Error = 6.9 NOK/MWh \]
 
 The results are perfect, but they are still a victim of the same symptom we saw with shuffled lists with solar power, and to an even stronger degree. Still, this did seem promising with respect to chronological testing which ended up like this: 
 
@@ -1401,7 +1418,11 @@ The results are perfect, but they are still a victim of the same symptom we saw 
  \caption{Machine learning prediction results for chronological power prices}
  \end{figure}
 
-\[Mean Absolute Error = 33.6 NOK/MWh \]
+\begin{equation}\label{Chronological power price results}
+Mean Absolute Error = 33.6 NOK/MWh
+\end{equation}
+
+%\[Mean Absolute Error = 33.6 NOK/MWh \]
 
 The accuracy of the results dropped much more than what was the case with solar power, because the variables are too many, and we don’t factor in anything but the historical data. Still, we concluded with that they are better than one would expect. We are confident that if more data, and more types of data are gathered, the results will increase in quality. 
 
