@@ -1384,7 +1384,7 @@ The way we handle buying and selling of power are very important in order to not
 \end{itemize}
 \paragraph{Predicting Solar Panel Power Production}
 
-In order to predict the solar panel power production, we needed historic weather and sun data. Luckily for us the European Commission provides a free \ac{API} which offers data from the Photovoltaic Geographical Information System (\ac{PVGIS}). This let us specify the location and direction of our solar panels, and outputted hourly data production data from 2005-2016. We stored the in our MongoDB cluster, one table for each of the walls, according to which cardinal direction they are facing, as well as one for the solar panels on the roof.  
+In order to predict the solar panel power production, we needed historic weather and sun data. Luckily for us the European Commission provides a free \ac{API} which offers data from the Photovoltaic Geographical Information System (\ac{PVGIS}). This let us specify the location and direction of our solar panels, and outputted hourly data production data from 2005-2016. We stored the data in our MongoDB cluster, one table for each of the walls, according to which cardinal direction they are facing, as well as one for the solar panels on the roof.  
 
 Weather data is easily available from many different sources, we chose to use the API of the Norwegian Meteorological Institute which provides extended information about cloud density and height. This also was stored in the cluster.   
 
