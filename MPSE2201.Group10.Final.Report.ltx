@@ -684,7 +684,7 @@ At page \pageref{RequirementTier0} we can see the requirements for our system at
 
 The energy consumption of the apartments and the whole building complex will decide what kind of system is viable.  
 
-Finding numbers is important when it comes to trade-off analysis. But as students we are not always equipped to simulate all our estimates. We did not want to spend too much time learning different software to simulate a buildings energy consumption. We wanted to focus on the subject at hand, which is system engineering. 
+Finding numbers is important when it comes to trade-off analysis, but as students we are not always equipped to simulate all our estimates. We did not want to spend too much time learning different software to simulate a buildings energy consumption. We wanted to focus on the subject at hand, which is system engineering. 
 
 For our estimates we decided to use the Norwegian building standard Tek17 as a guideline. It contains energy consumption regulatory limits for new buildings. It has maximum numbers per \begin{math}m^{2}\end{math} for ventilation and total energy consumption\cite{TEK17VEILEDNING}\cite{TEK17ENERGIEFFEKTIVITET}.  
 
@@ -692,7 +692,7 @@ For heating we used another Norwegian standard which has maximum numbers for hea
 
 For lights and appliances, we used numbers from an average home gathered by a popular power supplier in Norway, Hafslund strøm. The average light in Norway is not LED however. So, we divided the light consumption by 10\cite{HAFSLUND}.
 
-Electrical vehicle charging consumption is estimated from how far an average personal vehicle in Norway drives per year. Which is 12000km\cite{SSBBIL}. And how much energy an electric vehicle use per 10km driven. Which is between 1 and 2.5kWh\cite{FJORDKRAFT}. We decided to estimate on the safe side and use 2kWh per 10km driven.  
+Electrical vehicle charging consumption is estimated from how far an average personal vehicle in Norway drives per year, which is is 12000km\cite{SSBBIL}. How much energy an electric vehicle use per 10km driven, is between 1 and 2.5kWh\cite{FJORDKRAFT}. We decided to estimate on the safe side and use 2kWh per 10km driven.  
 
 For elevators we used a popular calculator online and used the most energy efficient solution\cite{THYSSEN}.
 
@@ -836,9 +836,9 @@ We looked at a few different ways of harvesting energy for our building complex.
  \caption{Pugh matrix for harvesting energy}
  \end{figure}
 
-By using this PUGH matrix, we were able to evaluate our options and we concluded that solar panels would be best suited for our system. It would not only be best suited for this specific system with the current location of medium density Oslo, but it’s also the option that would be easiest to implement at any other location. Comparing it to the nuclear option, it’s clear that solar is way more doable in terms of cost and difficulty. And if we compare it to wind and hydro, solar panels do not depend as much on the location and outside factors as these other options. By choosing solar panels we make it easier for us to distribute our system virtually anywhere. 
+By using this PUGH matrix, we were able to evaluate our options and we concluded that solar panels would be best suited for our system. It would not only be best suited for this specific system with the current location of medium density Oslo, but it’s also the option that would be easiest to implement at any other location. Comparing it to the nuclear option, it’s clear that solar is way more doable in terms of cost and difficulty. If we compare it to wind and hydro, solar panels do not depend as much on the location and outside factors as the other options. By choosing solar panels we make it easier for us to distribute our system virtually anywhere. 
 
-For a large building complex with multiple floors the current generation solar panels do not provide enough energy to provide 100\% of the building consumption. But with four floors it is close enough. In Norway renewable energy from the grid is very easy to guarantee. We will simply change our goal from 100\% to 60\% self-sustainable. And get the other 40\% from a power supplier with a guarantee that is comes from a renewable source. 
+For a large building complex with multiple floors the current generation solar panels do not provide enough energy to provide 100\% of the building consumption. However, with four floors it is close enough. In Norway renewable energy from the grid is very easy to guarantee. We will simply change our goal from 100\% to 60\% self-sustainable. We will get the other 40\% from a power supplier with a guarantee that is comes from a renewable source. 
 
 \paragraph{Storing Energy}
 
@@ -881,7 +881,7 @@ The solution would consist of solar panels for our power harvesting. A combinati
 
 There were uncovered several new requirements after making these trade-offs and recommendations, here we will have a look at a few of them.
 
-In order to find the best buy and sell windows for power we got this data from NordPool \cite{NORDPOOL}. And to maximize profits for our customers, we need to buy/sell as much as possible at the optimal hours.
+In order to find the best buy and sell windows for power we got this data from NordPool \cite{NORDPOOL}. To maximize profits for our customers, we need to buy/sell as much as possible at the optimal hours.
 
 \begin{figure}[H]
  \centering
@@ -1229,15 +1229,15 @@ Then we sent out emails to local installers in the Oslo area and got a response 
 
 See the attached email at page \pageref{emailSmartly}\\
 
-The building roof area is \begin{math}1800m^{2}\end{math} and to simulate what our photovoltaic production numbers would be, we used the average solar data from 3 different satellites. This simulation calculates kWh produced using a static kWp effect solar panel. In reality this will vary based on temperature and wind speed. And Oslo has a good combination of solar radiation, wind speed and temperature.  
+The building roof area is \begin{math}1800m^{2}\end{math} and to simulate what our photovoltaic production numbers would be, we used the average solar data from 3 different satellites. This simulation calculates kWh produced using a static kWp effect solar panel. In reality this will vary based on temperature and wind speed. Oslo has a good combination of solar radiation, wind speed and temperature.  
 
 For the angles we used the suggested optimal slope and azimuth from the website tool\cite{PVGTOOLS}. The roof panels will be mounted with a slope angle of 40\degree and an azimuth angle of 2\degree. Azimuth angle of 0\degree means it is facing directly south. 
 
-The solar panels mounted on the facade will use a slope angle of 90\degree. And for simplicity we used the azimuth angles for directly west, south and east. We did not have time to simulate which azimuth angle the entire building complex should be in for the best power production from all the walls put together. 
+The solar panels mounted on the facade will use a slope angle of 90\degree. For simplicity we used the azimuth angles for directly west, south and east. We did not have time to simulate which azimuth angle the entire building complex should be in for the best power production from all the walls put together. 
 
 In total the system will have \begin{math}1350m^{2}\end{math}  of solar panels spread evenly across the west, south and east facing walls. 
 
-Production will of course have some variation throughout the year. But the amount of power we need to buy from the external power grid is less than 40\% of our total power production. As we can see on the following graph our average self-sustain percent is $\sim$64\%.
+Production will of course have some variation throughout the year, but the amount of power we need to buy from the external power grid is less than 40\% of our total power production. As we can see on the following graph our average self-sustain percent is $\sim$64\%.
 
 \begin{figure}[H]
  \centering
@@ -1261,7 +1261,7 @@ If the system has access to 0 electric vehicles, we will have to throw away 0.7M
  \caption{Graph of estimated 24 hour peak power production}
  \end{figure}
 
-Hopefully in the future Norway manages to update some current laws to make it easier for large apartement complex to have their own energy production, without any need for energy storage. If we could ”store” the energy by sending it to the external grid where someone else in Norway could use the power instead. And have the same amount removed from our power bill. It would be a much more economical and enviromental way to store energy compared to lithium batteries\cite{NVEPLUSSKUNDE}.
+Hopefully in the future Norway manages to update some current laws to make it easier for large apartement complex to have their own energy production, without any need for energy storage. If we could ”store” the energy by sending it to the external grid where someone else in Norway could use the power instead and have the same amount removed from our power bill. It would be a much more economical and enviromental way to store energy compared to lithium batteries\cite{NVEPLUSSKUNDE}.
 
 \subsection{Thermal Calculations/Simulation}
 
@@ -1466,13 +1466,13 @@ The source code is found on page \pageref{MLPOWERPRICE}
 
 \subsubsection{Web-Application}
 
-Residents should have an easy way to adjust their temperature and change their vehicle charge settings. And be given detailed statistics over their energy consumption the last 24 hours, week, month and year. We have focused on simplicity and provide both a website which will work on all modern browsers. And we will also compile the website code into an app for both Android and iOS.  
+Residents should have an easy way to adjust their temperature and change their vehicle charge settings. They should be given detailed statistics over their energy consumption the last 24 hours, week, month and year. We have focused on simplicity and provide both a website which will work on all modern browsers. We will also compile the website code into an app for both Android and iOS.  
 
-We want our customers to have options to choose between website, app or both for their devices. And having our app on the respective app stores provides us with a tiny amount of marketing. 
+We want our customers to have options to choose between website, app or both for their devices and having our app on the respective app stores provides us with a tiny amount of marketing. 
 
-Which means we will only have one codebase to work on and update. But we will need to depend on other software for the actual conversions. 
+Which means we will only have one codebase to work on and update, but we will need to depend on other software for the actual conversions. 
 
-We have made a prototype of the “change temperature in apartment” function. And if we had more time we would continue with the “change electrical vehicle charge settings” and “energy consumption statistics”. 
+We have made a prototype of the “change temperature in apartment” function. If we had more time we would continue with the “change electrical vehicle charge settings” and “energy consumption statistics”. 
 
 \begin{figure}[H]
  \centering
@@ -1489,7 +1489,7 @@ A video demonstration of the website/app interface can be seen at:\\
 
 We perform risk analysis for our system operation so one of these scenarios do not cause physical, economical, psychological or social damage to our customer. 
 
-The risk analysis matrix shows how likely each scenario is and how much it will affect us or the stakeholders negatively. And the recommended action is what we can do to reduce the risk or the severity.
+The risk analysis matrix shows how likely each scenario is and how much it will affect us or the stakeholders negatively. The recommended action is what we can do to reduce the risk or the severity.
 
 \begin{figure}[H]
  \centering
@@ -1522,13 +1522,13 @@ The subsystems we sell as a box are not crucial and are interchangeable if they 
 
 The smart energy management service we provide has one physical mainframe in each building complex, temperature sensors inside and outside, and a proximity sensor in every apartment.  
 
-The mainframe and sensors provide essential data to our machine learning software, this data needs to be stored continually. And the machine learning software needs fine tuning and adjustments. Selling this as a service means less risk for us and the customer. Easier for us to maintain software with annual income, and the customer is guaranteed up to date software. 
+The mainframe and sensors provide essential data to our machine learning software, this data needs to be stored continually and the machine learning software needs fine tuning and adjustments. Selling this as a service means less risk for us and the customer. Easier for us to maintain software with annual income, and the customer is guaranteed up to date software. 
 
 \subsection{Our Budget}
 
 We made a budget to estimate our expenses and income. Unit sales will have a one-time expense/income while service will have annual expense/income. We will pay our engineers 1MNOK in the start and expect other expenses to be 100k annually. 
 
-For the most crucial and expensive sub-systems we tried to reach out to suppliers in the Oslo area and get a price from them. And some of them did generously respond to our queries. But for other sub-systems and atomic parts we simply guessed. 
+For the most crucial and expensive sub-systems we tried to reach out to suppliers in the Oslo area and get a price from them. Some of them did generously respond to our queries. However, for other sub-systems and atomic parts we simply guessed. 
 
 See the attached emails at pages: \pageref{emailNibe}, \pageref{emailSkanbatt}, \pageref{emailSmartly}
 
@@ -1542,7 +1542,7 @@ The unit will cost the customer 10MNOK and the annual service 50k.
  \caption{Budget for our company}
  \end{figure}
 
-We expect to make a profit after 2 years. And be dept free from the 6 MNOK we loaned from investors after 3.5 years. 
+We expect to make a profit after 2 years and be debt free from the 6 MNOK we loaned from investors after 3.5 years. 
 
 \subsection{Our Cash Flow}
 
@@ -1578,7 +1578,7 @@ Subsystem replacement schedule:
  \caption{Cash flow graph for customer}
  \end{figure}
 
-Our remote heating cost estimation is very generous. And the residents will still end up saving money with our system after $\sim$13 years. We suspect remote heating is more expensive in reality. 
+Our remote heating cost estimation is very generous and the residents will still end up saving money with our system after $\sim$13 years. We suspect remote heating is more expensive in reality. 
 
 %CONCLUSION
 \section{Conclusion}
@@ -1608,7 +1608,7 @@ One of the problems we see with large buildings having their own power productio
 
 It was difficult to scope the problem, and we should have put more focus on this earlier. This would have prevented us from spending time designing a building.
 
-The focus of this assignment was to learn system engineering, and we were told not to focus too much on numbers. But poor research can lead to a poor product solution. The system is only as good as its worst sub-system.
+The focus of this assignment was to learn system engineering, and we were told not to focus too much on numbers. However, poor research can lead to a poor product solution. The system is only as good as its worst sub-system.
 
 The energy consumption of the building is a crucial starting point. The entire system is dependant on how much power we need. Research into this area should have had a larger focus early on, to make sure we were solving the correct problem.
 
