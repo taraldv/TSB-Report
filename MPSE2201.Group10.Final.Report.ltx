@@ -79,17 +79,17 @@
 }
 \DeclareAcronym{MTTL}{
   short = MTTL ,
-  long  = Mean Time To Learn ,
+  long  = Mean Time to Learn ,
   class = abbrev
 }
 \DeclareAcronym{MTTR}{
   short = MTTR ,
-  long  = Mean Time To Repair ,
+  long  = Mean Time to Repair ,
   class = abbrev
 }
 \DeclareAcronym{MTTF}{
   short = MTTF ,
-  long  = Mean Time To Failure ,
+  long  = Mean Time to Failure ,
   class = abbrev
 }
 \DeclareAcronym{SMART}{
@@ -129,12 +129,23 @@
 }
 \DeclareAcronym{NVE}{
   short = NVE ,
-  long  =   Noregs vassdrags- og energidirektorat,
+  long  =   Noregs Vassdrags- og Energidirektorat,
   class = abbrev
 }
 \DeclareAcronym{INCOSE}{
   short = INCOSE ,
   long  =   International Council on Systems Engineering,
+  class = abbrev
+}
+\DeclareAcronym{API}{
+  short = API ,
+  long  =   Application Programming Interface,
+  class = abbrev
+}
+\DeclareAcronym{PVGIS}{
+  short = PVGIS ,
+  long  =   Photovoltaic
+Geographical Information System,
   class = abbrev
 }
 
@@ -498,7 +509,7 @@ To see the problem from the point of view of the people that are living with the
 When we see the problem this way it illuminates the possibilities to make life easier for the users at the same time as we offer a solution to the problem. 
 
 So, who will our solution affect when we take location into account? How do we interact with the municipality? How will our system affect neighbors? What sort of laws do we have to uphold?  These are some of the questions we need answers to. 
-
+\newpage
 \subsection{Context}
 
 We first made a quick sketch of the building. As it is the most important man-made system our system will interact with. 
@@ -897,6 +908,7 @@ This research resulted in these requirements:
 \end{itemize}
 At page \pageref{RequirementTier1} we can see the rest of the requirements for tier 1, which we derived from our work in this tier. These new requirements will help us design the subsystems.
 
+\newpage
 %Tier 1
 \subsection{Tier 1}
 
@@ -1162,6 +1174,7 @@ Even though the system will be smart, there is no such thing as perfect. That is
 
 These are the main functions the application should offer the user.  It should let them change the wanted temperature in their apartments, display statistics, configure the V2B system, as well as requesting support online.  
 
+\newpage
 \textbf{Developer Tools}
 
 The Control System will need continuous monitoring, upgrading and maintenance. In order to do this effectively we have seen the need for a software which encapsulates tools for all of this. 
@@ -1371,7 +1384,7 @@ The way we handle buying and selling of power are very important in order to not
 \end{itemize}
 \paragraph{Predicting Solar Panel Power Production}
 
-In order to predict the solar panel power production, we needed historic weather and sun data. Luckily for us the European Commission provides a free API which offers data from the Photovoltaic Geographical Information System (PVGIS). This let us specify the location and direction of our solar panels, and outputted hourly data production data from 2005-2016. We stored the in our MongoDB cluster, one table for each of the walls, according to which cardinal direction they are facing, as well as one for the solar panels on the roof.  
+In order to predict the solar panel power production, we needed historic weather and sun data. Luckily for us the European Commission provides a free \ac{API} which offers data from the Photovoltaic Geographical Information System (\ac{PVGIS}). This let us specify the location and direction of our solar panels, and outputted hourly data production data from 2005-2016. We stored the in our MongoDB cluster, one table for each of the walls, according to which cardinal direction they are facing, as well as one for the solar panels on the roof.  
 
 Weather data is easily available from many different sources, we chose to use the API of the Norwegian Meteorological Institute which provides extended information about cloud density and height. This also was stored in the cluster.   
 
@@ -1485,6 +1498,7 @@ A video demonstration of the website/app interface can be seen at:\\
 
 
 %RISK
+\newpage
 \section{System Risk Analysis}
 
 We perform risk analysis for our system operation so one of these scenarios do not cause physical, economical, psychological or social damage to our customer. 
@@ -1499,7 +1513,7 @@ The risk analysis matrix shows how likely each scenario is and how much it will 
 
 
 
-
+\newpage
 %ECONOMICS
 \section{Economics}
 
@@ -1580,6 +1594,7 @@ Subsystem replacement schedule:
 
 Our remote heating cost estimation is very generous and the residents will still end up saving money with our system after $\sim$13 years. We suspect remote heating is more expensive in reality. 
 
+\newpage
 %CONCLUSION
 \section{Conclusion}
 
